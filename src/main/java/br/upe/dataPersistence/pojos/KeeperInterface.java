@@ -1,4 +1,4 @@
-package br.upe.pojos;
+package br.upe.dataPersistence.pojos;
 
 public interface KeeperInterface {
     static GreatEvent createGreatEvent(){

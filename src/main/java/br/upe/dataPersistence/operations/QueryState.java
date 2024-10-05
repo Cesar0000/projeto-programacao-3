@@ -1,4 +1,4 @@
-package br.upe.operations;
+package br.upe.dataPersistence.operations;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

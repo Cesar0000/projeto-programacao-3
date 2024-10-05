@@ -1,4 +1,4 @@
-package br.upe.pojos;
+package br.upe.dataPersistence.pojos;
 
 import br.upe.operations.SubscriptionCRUD;
 

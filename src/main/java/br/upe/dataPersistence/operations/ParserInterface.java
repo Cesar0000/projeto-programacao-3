@@ -1,4 +1,4 @@
-package br.upe.operations;
+package br.upe.dataPersistence.operations;
 
 import br.upe.pojos.*;
 

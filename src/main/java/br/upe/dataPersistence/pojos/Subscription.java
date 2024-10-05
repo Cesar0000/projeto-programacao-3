@@ -1,4 +1,4 @@
-package br.upe.pojos;
+package br.upe.dataPersistence.pojos;
 
 import java.time.Instant;
 import java.util.Date;

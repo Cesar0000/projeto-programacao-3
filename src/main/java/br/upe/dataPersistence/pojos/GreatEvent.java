@@ -1,4 +1,5 @@
-package br.upe.pojos;
+package br.upe.dataPersistence.pojos;
+
 import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
