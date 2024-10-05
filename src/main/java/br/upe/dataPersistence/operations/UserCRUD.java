@@ -2,7 +2,7 @@ package br.upe.dataPersistence.operations;
 
 import java.io.*;
 
-import br.upe.pojos.*;
+import br.upe.dataPersistence.pojos.*;
 
 import java.util.ArrayList;
 import java.util.Collection;

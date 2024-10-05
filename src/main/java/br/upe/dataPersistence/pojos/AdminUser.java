@@ -1,7 +1,7 @@
 package br.upe.dataPersistence.pojos;
 
-import br.upe.operations.EventCRUD;
-import br.upe.operations.SubscriptionCRUD;
+import br.upe.dataPersistence.operations.EventCRUD;
+import br.upe.dataPersistence.operations.SubscriptionCRUD;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

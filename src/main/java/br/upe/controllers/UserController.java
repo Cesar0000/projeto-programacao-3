@@ -1,7 +1,7 @@
 package br.upe.controllers;
 
-import br.upe.operations.HasherInterface;
-import br.upe.pojos.*;
+import br.upe.dataPersistence.operations.HasherInterface;
+import br.upe.dataPersistence.pojos.*;
 
 public class UserController {
     public UserController(StateController stateController, CRUDController crudController) {

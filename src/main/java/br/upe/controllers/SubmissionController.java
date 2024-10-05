@@ -1,9 +1,9 @@
 package br.upe.controllers;
 
-import br.upe.pojos.GreatEvent;
-import br.upe.pojos.KeeperInterface;
-import br.upe.pojos.Submission;
-import br.upe.pojos.Subscription;
+import br.upe.dataPersistence.pojos.GreatEvent;
+import br.upe.dataPersistence.pojos.KeeperInterface;
+import br.upe.dataPersistence.pojos.Submission;
+import br.upe.dataPersistence.pojos.Subscription;
 
 import java.util.ArrayList;
 import java.util.Collection;

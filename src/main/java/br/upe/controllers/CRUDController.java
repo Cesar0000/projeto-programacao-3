@@ -1,6 +1,6 @@
 package br.upe.controllers;
 
-import br.upe.operations.*;
+import br.upe.dataPersistence.operations.*;
 
 public class CRUDController {
     public final EventCRUD eventCRUD = CRUDInterface.newEventCRUD();

@@ -1,7 +1,7 @@
 package br.upe.userInterface.cli;
 
 import br.upe.controllers.*;
-import br.upe.pojos.*;
+import br.upe.dataPersistence.pojos.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

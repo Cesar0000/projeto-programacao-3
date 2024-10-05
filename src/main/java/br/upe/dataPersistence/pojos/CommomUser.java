@@ -1,6 +1,6 @@
 package br.upe.dataPersistence.pojos;
 
-import br.upe.operations.SubscriptionCRUD;
+import br.upe.dataPersistence.operations.SubscriptionCRUD;
 
 import java.util.Collection;
 import java.util.UUID;

@@ -1,12 +1,12 @@
 package br.upe.dataPersistence.operations;
 
-import br.upe.pojos.HelperInterface;
-import br.upe.pojos.Submission;
+import br.upe.dataPersistence.pojos.HelperInterface;
+import br.upe.dataPersistence.pojos.Submission;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
-
 
 public class SubmissionCRUD extends BaseCRUD {
 

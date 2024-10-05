@@ -1,6 +1,6 @@
 package br.upe.dataPersistence.operations;
 
-import br.upe.pojos.*;
+import br.upe.dataPersistence.pojos.*;
 
 import java.time.Instant;
 import java.util.ArrayList;

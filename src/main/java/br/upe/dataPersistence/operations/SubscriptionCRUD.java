@@ -1,7 +1,8 @@
 package br.upe.dataPersistence.operations;
 
-import br.upe.pojos.HelperInterface;
-import br.upe.pojos.Subscription;
+import br.upe.dataPersistence.pojos.HelperInterface;
+import br.upe.dataPersistence.pojos.Subscription;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;

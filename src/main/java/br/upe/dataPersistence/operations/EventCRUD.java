@@ -1,14 +1,12 @@
 package br.upe.dataPersistence.operations;
 
-import  br.upe.pojos.*;
+import  br.upe.dataPersistence.pojos.*;
 
 import java.io.*;
-
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
-
 
 public class EventCRUD extends BaseCRUD {
     public EventCRUD(){ super(); }

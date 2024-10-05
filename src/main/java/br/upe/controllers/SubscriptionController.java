@@ -1,6 +1,6 @@
 package br.upe.controllers;
 
-import br.upe.pojos.*;
+import br.upe.dataPersistence.pojos.*;
 
 import java.util.UUID;
 

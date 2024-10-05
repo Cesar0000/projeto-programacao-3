@@ -1,10 +1,10 @@
 package br.upe.controllers;
 
-import br.upe.operations.SubmissionCRUD;
-import br.upe.pojos.AdminUser;
-import br.upe.pojos.KeeperInterface;
-import br.upe.pojos.Submission;
-import br.upe.pojos.User;
+import br.upe.dataPersistence.operations.SubmissionCRUD;
+import br.upe.dataPersistence.pojos.AdminUser;
+import br.upe.dataPersistence.pojos.KeeperInterface;
+import br.upe.dataPersistence.pojos.Submission;
+import br.upe.dataPersistence.pojos.User;
 
 import java.util.Collection;
 import java.util.Date;
