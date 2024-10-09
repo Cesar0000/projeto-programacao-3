@@ -1,4 +1,4 @@
-package br.upe.userInterface.cli;
+package br.upe.userInteface.cli;
 
 import br.upe.controllers.*;
 import br.upe.dataPersistence.pojos.*;
