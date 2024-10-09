@@ -12,7 +12,7 @@ public class LoginApp extends Application {
         // Usando o caminho correto para o arquivo FXML
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root, 300, 200));
+        primaryStage.setScene(new Scene(root, 600, 400)); // Aumente os valores conforme necessário
         primaryStage.show();
     }
 
