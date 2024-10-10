@@ -3,7 +3,7 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - main
+      - FixingSonarBugs
   pull_request:
     types: [opened, synchronize, reopened]
 
