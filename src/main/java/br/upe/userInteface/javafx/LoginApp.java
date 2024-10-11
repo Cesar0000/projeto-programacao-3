@@ -10,9 +10,10 @@ public class LoginApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Usando o caminho correto para o arquivo FXML
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
         primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root, 600, 400)); // Aumente os valores conforme necessário
+
+        primaryStage.setScene(new Scene(root, 920, 520));
         primaryStage.show();
     }
 
