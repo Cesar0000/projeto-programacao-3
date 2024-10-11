@@ -1,4 +1,4 @@
-package br.upe.userInteface.javafx;
+package br.upe.userInterface.javafx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package br.upe.userInteface.cli;
+package br.upe.userInterface.cli;
 
 public class App {
     public static void main(String[] args) {
