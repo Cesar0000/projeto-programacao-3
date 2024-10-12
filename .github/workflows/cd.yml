@@ -1,9 +1,9 @@
 name: Continuous Deployment
 
 on:
-    push:
-      branches:
-        - release
+  push:
+    tags:
+      - v*
 
 jobs:
   build:
@@ -50,13 +50,13 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          name: ${{ matrix.os }} Development Build
+          name: Release ${{ github.ref_name }} (${{ matrix.os }})
+          tag_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
           fail_on_unmatched_files: false
           make_latest: true
           generate_release_notes: false
-          target_commitish: release
           token: ${{ secrets.GITHUB_TOKEN}}
           files: |
             ./target/*.msi
