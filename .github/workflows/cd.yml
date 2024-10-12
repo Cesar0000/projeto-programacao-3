@@ -44,16 +44,20 @@ jobs:
           java-package: jdk+fx
           cache: 'maven'
 
-      - name: "Build with Maven"
+      - name: Build with Maven
         run: mvn -B clean install --file pom.xml -DcreateReleases=true
 
-      - name: Update Automatic Release
-        uses: marvinpinto/action-automatic-releases@latest
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN}}"
-          automatic_release_tag: ${{ matrix.os }}
+          name: ${{ matrix.os }} Development Build
+          draft: false
           prerelease: false
-          title: ${{ matrix.os }} Development Build
+          fail_on_unmatched_files: false
+          make_latest: true
+          generate_release_notes: false
+          target_commitish: release
+          token: ${{ secrets.GITHUB_TOKEN}}
           files: |
             ./target/*.msi
             ./target/*.deb
