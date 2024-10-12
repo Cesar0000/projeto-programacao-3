@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>Projeto de Programação 3</name>
-    <description>JavaFX Application</description>
+    <description>Prog 3 JavaFX Application</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -176,14 +176,14 @@
 
             <activation>
                 <property>
-                    <name>createReleases</name>
+                    <name>createRelease</name>
                     <value>true</value>
                 </property>
             </activation>
 
             <properties>
-                <app.version>1.0.${env.GITHUB_RUN_NUMBER}</app.version>
-                <app.name>JavaFXApp</app.name>
+                <!-- <app.version>1.0.${env.GITHUB_RUN_NUMBER}</app.version> -->
+                <app.name>Nexus</app.name>
                 <jvm.modules>javafx.controls,javafx.fxml</jvm.modules>
                 <windows.upgrade.uuid>bba015ac-8747-47c4-ad2a-55f200760288</windows.upgrade.uuid>
                 <windows.vendor>UPE</windows.vendor>
