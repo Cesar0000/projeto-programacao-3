@@ -176,7 +176,8 @@
 
             <activation>
                 <property>
-                    <name>env.GITHUB_ACTIONS</name>
+                    <name>createReleases</name>
+                    <value>true</value>
                 </property>
             </activation>
 

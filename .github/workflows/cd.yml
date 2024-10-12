@@ -45,7 +45,7 @@ jobs:
           cache: 'maven'
 
       - name: "Build with Maven"
-        run: mvn -B clean install --file pom.xml
+        run: mvn -B clean install --file pom.xml -DcreateReleases=true
 
       - name: Update Automatic Release
         uses: marvinpinto/action-automatic-releases@latest
