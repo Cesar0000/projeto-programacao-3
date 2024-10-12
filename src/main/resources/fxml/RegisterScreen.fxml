@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #EFEFEF;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="br.upe.controllers.javafx.RegisterScreenController">
+<children>
+    <StackPane layoutX="250.0" layoutY="100.0" prefHeight="350.0" prefWidth="300.0">
+        <Rectangle arcHeight="20.0" arcWidth="20.0" height="350.0" style="-fx-fill: #FFFFFF;" width="300.0" />
+        <VBox alignment="CENTER" spacing="15.0" style="-fx-padding: 20;">
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #439121;" text="Cadastro" />
+
+            <Label style="-fx-font-size: 14px; -fx-font-weight: semibold; -fx-text-fill: black;" text="Nome" />
+            <TextField fx:id="nameField" promptText="Digite o seu nome completo" />
+
+            <Label style="-fx-font-size: 14px; -fx-font-weight: semibold; -fx-text-fill: black;" text="E-mail" />
+            <TextField fx:id="emailField" promptText="Digite o seu e-mail" />
+
+            <Label prefHeight="20.0" prefWidth="46.0" style="-fx-font-size: 14px; -fx-font-weight: semibold; -fx-text-fill: black;" text="Senha" />
+            <PasswordField fx:id="passwordField" promptText="Digite uma senha" />
+
+            <Button fx:id="createAccountButton" onAction="#handleCreateAccount" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #439121; -fx-text-fill: white;" text="Criar conta" />
+        </VBox>
+    </StackPane>
+</children>
+</AnchorPane>
