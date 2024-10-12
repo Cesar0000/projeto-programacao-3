@@ -56,7 +56,7 @@ jobs:
         shell: bash
 
       - name: Build with Maven
-        run: mvn -B clean install --file pom.xml -DcreateRelease=true -Dapp.version=${{ env.VERSION }}
+        run: mvn -B clean install --file pom.xml -DcreateRelease=true -D"app.version=${{ env.VERSION }}"
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
