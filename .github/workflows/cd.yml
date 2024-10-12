@@ -50,14 +50,10 @@ jobs:
       - name: Extract Version Number from Tag
         id: extract_version
         run: |
-          if [[ "$RUNNER_OS" == "Linux" ]]; then
-            TAG=${GITHUB_REF##*/}
-            VERSION=${TAG#v}
-          else
-            TAG=${GITHUB_REF##*/}
-            VERSION=${TAG:1}
-          fi
+          TAG=${GITHUB_REF##*/}
+          VERSION=${TAG#v}
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
+        shell: bash
 
       - name: Build with Maven
         run: mvn -B clean install --file pom.xml -DcreateRelease=true -Dapp.version=${{ env.VERSION }}
