@@ -15,35 +15,31 @@ public class Event {
         return id;
     }
 
-    public Event setId(long id) {
+    public void setId(long id) {
         this.id = id;
-        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Event setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return this;
     }
 
     public LocalDate getStartDate() {
         return startDate;
     }
 
-    public Event setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
-        return this;
     }
 
     public LocalDate getEndDate() {
         return endDate;
     }
 
-    public Event setEndDate(LocalDate endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
-        return this;
     }
 }

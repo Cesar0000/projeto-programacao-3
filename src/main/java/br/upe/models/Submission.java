@@ -14,35 +14,31 @@ public class Submission {
         return userId;
     }
 
-    public Submission setUserId(long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
-        return this;
     }
 
     public long getEventId() {
         return eventId;
     }
 
-    public Submission setEventId(long eventId) {
+    public void setEventId(long eventId) {
         this.eventId = eventId;
-        return this;
     }
 
     public String getArticleName() {
         return articleName;
     }
 
-    public Submission setArticleName(String articleName) {
+    public void setArticleName(String articleName) {
         this.articleName = articleName;
-        return this;
     }
 
     public Instant getTimestamp() {
         return timestamp;
     }
 
-    public Submission setTimestamp(Instant timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
-        return this;
     }
 }

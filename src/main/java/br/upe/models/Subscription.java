@@ -14,35 +14,31 @@ public class Subscription {
         return userId;
     }
 
-    public Subscription setUserId(long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
-        return this;
     }
 
     public long getEventId() {
         return eventId;
     }
 
-    public Subscription serEventId(long eventId) {
+    public void serEventId(long eventId) {
         this.eventId = eventId;
-        return this;
     }
 
     public long getSessionId() {
         return sessionId;
     }
 
-    public Subscription setSessionId(long sessionId) {
+    public void setSessionId(long sessionId) {
         this.sessionId = sessionId;
-        return this;
     }
 
     public Instant getTimestamp() {
         return timestamp;
     }
 
-    public Subscription setTimestamp(Instant timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
-        return this;
     }
 }
