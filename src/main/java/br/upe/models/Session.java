@@ -4,27 +4,27 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Session {
-    private long eventId;
-    private long sessionId;
+    private Long eventId;
+    private Long sessionId;
     private String name;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
     public Session() {}
 
-    public long getEventId() {
+    public Long getEventId() {
         return eventId;
     }
 
-    public void setEventId(long eventId) {
+    public void setEventId(Long eventId) {
         this.eventId = eventId;
     }
 
-    public long getSessionId() {
+    public Long getSessionId() {
         return sessionId;
     }
 
-    public void setSessionId(long sessionId) {
+    public void setSessionId(Long sessionId) {
         this.sessionId = sessionId;
     }
 

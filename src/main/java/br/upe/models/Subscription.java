@@ -3,34 +3,34 @@ package br.upe.models;
 import java.time.Instant;
 
 public class Subscription {
-    private long userId;
-    private long eventId;
-    private long sessionId;
+    private Long userId;
+    private Long eventId;
+    private Long sessionId;
     private Instant timestamp;
 
     public Subscription() {}
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public long getEventId() {
+    public Long getEventId() {
         return eventId;
     }
 
-    public void serEventId(long eventId) {
+    public void serEventId(Long eventId) {
         this.eventId = eventId;
     }
 
-    public long getSessionId() {
+    public Long getSessionId() {
         return sessionId;
     }
 
-    public void setSessionId(long sessionId) {
+    public void setSessionId(Long sessionId) {
         this.sessionId = sessionId;
     }
 

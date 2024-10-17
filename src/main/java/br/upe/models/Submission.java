@@ -3,26 +3,26 @@ package br.upe.models;
 import java.time.Instant;
 
 public class Submission {
-    private long userId;
-    private long eventId;
+    private Long userId;
+    private Long eventId;
     private String articleName;
     private Instant timestamp;
 
     public Submission() {}
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public long getEventId() {
+    public Long getEventId() {
         return eventId;
     }
 
-    public void setEventId(long eventId) {
+    public void setEventId(Long eventId) {
         this.eventId = eventId;
     }
 
