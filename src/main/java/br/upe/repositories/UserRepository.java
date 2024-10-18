@@ -23,7 +23,7 @@ public class UserRepository {
         this.connection = connection;
     }
 
-    public void create(User user) throws SQLException {
+    public void create(br.upe.dataPersistence.pojos.User user) throws SQLException {
         String query = """
             INSERT INTO user (name, email, password) VALUES (?, ?, ?)
         """;
@@ -38,9 +38,7 @@ public class UserRepository {
         try (PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
-            Blob passwordBlob = connection.createBlob();
-            passwordBlob.setBytes(1, user.getPassword());
-            preparedStatement.setBlob(3, passwordBlob);
+            preparedStatement.setBytes(3, user.getPassword());
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -83,9 +81,7 @@ public class UserRepository {
                 preparedStatement.setString(index++, user.getEmail());
             }
             if (user.getPassword().length != 0) {
-                Blob passwordBlob = connection.createBlob();
-                passwordBlob.setBytes(1, user.getPassword());
-                preparedStatement.setBlob(index++, passwordBlob);
+                preparedStatement.setBytes(index++, user.getPassword());
             }
             preparedStatement.setLong(index++, user.getId());
 
@@ -119,9 +115,7 @@ public class UserRepository {
             user.setId(resultSet.getLong("id"));
             user.setName(resultSet.getString("name"));
             user.setEmail(resultSet.getString("email"));
-            Blob passwordBlob = resultSet.getBlob("password");
-            byte[] password = passwordBlob.getBytes(1, (int) passwordBlob.length());
-            user.setPassword(password);
+            user.setPassword(resultSet.getBytes("password"));
 
             return Optional.of(user);
         }
@@ -149,9 +143,7 @@ public class UserRepository {
             user.setId(resultSet.getLong("id"));
             user.setName(resultSet.getString("name"));
             user.setEmail(resultSet.getString("email"));
-            Blob passwordBlob = resultSet.getBlob("password");
-            byte[] password = passwordBlob.getBytes(1, (int) passwordBlob.length());
-            user.setPassword(password);
+            user.setPassword(resultSet.getBytes("password"));
 
             return Optional.of(user);
         }
@@ -174,9 +166,7 @@ public class UserRepository {
                 user.setId(resultSet.getLong("id"));
                 user.setName(resultSet.getString("name"));
                 user.setEmail(resultSet.getString("email"));
-                Blob passwordBlob = resultSet.getBlob("password");
-                byte[] password = passwordBlob.getBytes(1, (int) passwordBlob.length());
-                user.setPassword(password);
+                user.setPassword(resultSet.getBytes("password"));
 
                 users.add(user);
             }

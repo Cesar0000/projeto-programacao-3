@@ -6,7 +6,7 @@ public class Submission {
     private Long eventId;
     private Long userId;
     private String articleName;
-    private Instant timestamp;
+    private Instant createdAt;
 
     public Submission() {}
 
@@ -34,11 +34,11 @@ public class Submission {
         this.articleName = articleName;
     }
 
-    public Instant getTimestamp() {
-        return timestamp;
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 
-    public void setTimestamp(Instant timestamp) {
-        this.timestamp = timestamp;
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 }

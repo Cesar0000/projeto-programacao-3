@@ -22,20 +22,20 @@ public class SubmissionRepository {
 
     public void create(Submission submission) throws SQLException {
         String query = """
-            INSERT INTO submission (event_id, user_id, article_name, timestamp) VALUES (?, ?, ?, ?)
+            INSERT INTO submission (event_id, user_id, article_name, created_at) VALUES (?, ?, ?, ?)
         """;
 
         // Validate fields
         Objects.requireNonNull(submission.getEventId(), "The event id must not be null.");
         Objects.requireNonNull(submission.getUserId(), "The user id must not be null.");
         Objects.requireNonNull(submission.getArticleName(), "The name of the article must not be null.");
-        Objects.requireNonNull(submission.getTimestamp(), "The timestamp must not be null.");
+        Objects.requireNonNull(submission.getCreatedAt(), "The created at timestamp must not be null.");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, submission.getEventId());
             preparedStatement.setLong(2, submission.getUserId());
             preparedStatement.setString(3, submission.getArticleName());
-            preparedStatement.setTimestamp(4, Timestamp.from(submission.getTimestamp()));
+            preparedStatement.setTimestamp(4, Timestamp.from(submission.getCreatedAt()));
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -68,7 +68,7 @@ public class SubmissionRepository {
             submission.setEventId(resultSet.getLong("event_id"));
             submission.setUserId(resultSet.getLong("user_id"));
             submission.setArticleName(resultSet.getString("article_name"));
-            submission.setTimestamp(resultSet.getTimestamp("timestamp").toInstant());
+            submission.setCreatedAt(resultSet.getTimestamp("created_at").toInstant());
 
             return Optional.of(submission);
         }
@@ -94,7 +94,7 @@ public class SubmissionRepository {
                 submission.setEventId(resultSet.getLong("event_id"));
                 submission.setUserId(resultSet.getLong("user_id"));
                 submission.setArticleName(resultSet.getString("article_name"));
-                submission.setTimestamp(resultSet.getTimestamp("timestamp").toInstant());
+                submission.setCreatedAt(resultSet.getTimestamp("created_at").toInstant());
 
                 submissions.add(submission);
             }
@@ -123,7 +123,7 @@ public class SubmissionRepository {
                 submission.setEventId(resultSet.getLong("event_id"));
                 submission.setUserId(resultSet.getLong("user_id"));
                 submission.setArticleName(resultSet.getString("article_name"));
-                submission.setTimestamp(resultSet.getTimestamp("timestamp").toInstant());
+                submission.setCreatedAt(resultSet.getTimestamp("created_at").toInstant());
 
                 submissions.add(submission);
             }

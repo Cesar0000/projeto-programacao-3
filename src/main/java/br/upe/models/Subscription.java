@@ -6,7 +6,7 @@ public class Subscription {
     private Long userId;
     private Long eventId;
     private Long sessionNumber;
-    private Instant timestamp;
+    private Instant createdAt;
 
     public Subscription() {}
 
@@ -34,11 +34,11 @@ public class Subscription {
         this.sessionNumber = sessionNumber;
     }
 
-    public Instant getTimestamp() {
-        return timestamp;
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 
-    public void setTimestamp(Instant timestamp) {
-        this.timestamp = timestamp;
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 }

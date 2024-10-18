@@ -22,20 +22,20 @@ public class SubscriptionRepository {
 
     public void create(Subscription subscription) throws SQLException {
         String query = """
-            INSERT INTO subscription (user_id, event_id, session_number, timestamp) VALUES (?, ?, ?, ?)
+            INSERT INTO subscription (user_id, event_id, session_number, created_at) VALUES (?, ?, ?, ?)
         """;
 
         // Validate fields
         Objects.requireNonNull(subscription.getUserId(), "The user id must not be null.");
         Objects.requireNonNull(subscription.getEventId(), "The event id must not be null.");
         Objects.requireNonNull(subscription.getSessionNumber(), "The session number must not be null.");
-        Objects.requireNonNull(subscription.getTimestamp(), "The timestamp must not be null.");
+        Objects.requireNonNull(subscription.getCreatedAt(), "The created at timestamp must not be null.");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, subscription.getUserId());
             preparedStatement.setLong(2, subscription.getEventId());
             preparedStatement.setLong(3, subscription.getSessionNumber());
-            preparedStatement.setTimestamp(4, Timestamp.from(subscription.getTimestamp()));
+            preparedStatement.setTimestamp(4, Timestamp.from(subscription.getCreatedAt()));
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -69,7 +69,7 @@ public class SubscriptionRepository {
             subscription.setUserId(resultSet.getLong("user_id"));
             subscription.setEventId(resultSet.getLong("event_id"));
             subscription.setSessionNumber(resultSet.getLong("session_number"));
-            subscription.setTimestamp(resultSet.getTimestamp("timestamp").toInstant());
+            subscription.setCreatedAt(resultSet.getTimestamp("created_at").toInstant());
 
             return Optional.of(subscription);
         }
@@ -95,7 +95,7 @@ public class SubscriptionRepository {
                 subscription.setUserId(resultSet.getLong("user_id"));
                 subscription.setEventId(resultSet.getLong("event_id"));
                 subscription.setSessionNumber(resultSet.getLong("session_number"));
-                subscription.setTimestamp(resultSet.getTimestamp("timestamp").toInstant());
+                subscription.setCreatedAt(resultSet.getTimestamp("created_at").toInstant());
 
                 subscriptions.add(subscription);
             }
@@ -125,7 +125,7 @@ public class SubscriptionRepository {
                 subscription.setUserId(resultSet.getLong("user_id"));
                 subscription.setEventId(resultSet.getLong("event_id"));
                 subscription.setSessionNumber(resultSet.getLong("session_number"));
-                subscription.setTimestamp(resultSet.getTimestamp("timestamp").toInstant());
+                subscription.setCreatedAt(resultSet.getTimestamp("created_at").toInstant());
 
                 subscriptions.add(subscription);
             }

@@ -42,8 +42,9 @@ public class SessionRepository {
             session.setEventId(resultSet.getLong("event_id"));
             session.setSessionNumber(resultSet.getLong("session_number"));
             session.setName(resultSet.getString("name"));
-            session.setStartTime(resultSet.getTimestamp("start_time").toLocalDateTime());
-            session.setEndTime(resultSet.getTimestamp("end_time").toLocalDateTime());
+            session.setDate(resultSet.getDate("date").toLocalDate());
+            session.setStartTime(resultSet.getTime("start_time").toLocalTime());
+            session.setEndTime(resultSet.getTime("end_time").toLocalTime());
 
             return Optional.of(session);
         }
@@ -66,8 +67,9 @@ public class SessionRepository {
                 session.setEventId(resultSet.getLong("event_id"));
                 session.setSessionNumber(resultSet.getLong("session_number"));
                 session.setName(resultSet.getString("name"));
-                session.setStartTime(resultSet.getTimestamp("start_time").toLocalDateTime());
-                session.setEndTime(resultSet.getTimestamp("end_time").toLocalDateTime());
+                session.setDate(resultSet.getDate("date").toLocalDate());
+                session.setStartTime(resultSet.getTime("start_time").toLocalTime());
+                session.setEndTime(resultSet.getTime("end_time").toLocalTime());
 
                 sessions.add(session);
             }
