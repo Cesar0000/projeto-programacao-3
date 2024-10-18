@@ -1,7 +1,10 @@
 package br.upe.userInterface.cli;
 
 import br.upe.controllers.*;
-import br.upe.dataPersistence.pojos.*;
+import br.upe.dataPersistence.pojos.AdminUser;
+import br.upe.dataPersistence.pojos.GreatEvent;
+import br.upe.dataPersistence.pojos.Session;
+import br.upe.dataPersistence.pojos.Subscription;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -155,7 +158,6 @@ public class MainMenu {
 
         if(authController.login(email, password)) {
             System.out.println("Logged successfully!");
-            return;
         } else {
             displayLoginMenu();
         }
@@ -242,9 +244,14 @@ public class MainMenu {
 
     public void displayEventMenu() {
         Scanner scanner = new Scanner(System.in);
-        boolean running = true;
-        while (running) {
-            System.out.println("Event Menu: " + stateController.getCurrentEvent().getDescritor());
+
+        while (true) {
+            if (stateController.getCurrentEvent() != null) {
+                System.out.println("Event Menu: " + stateController.getCurrentEvent().getDescritor());
+            } else {
+                System.out.println("No events found.");
+                return;
+            }
             System.out.println("1. Manage Submissions");
             System.out.println("2. Update Event Descritor");
             System.out.println("3. Update Event Director");
@@ -253,33 +260,37 @@ public class MainMenu {
             System.out.println("6. Manage Session");
 
             System.out.println("7. Exit");
+            String input = scanner.nextLine();
+            try {
+                int choice = Integer.parseInt(input);
+                scanner.nextLine();
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 1:
-                    manageSubmissions();
-                    break;
-                case 2:
-                    updateEventDescritor();
-                    break;
-                case 3:
-                    updateEventDirector();
-                    break;
-                case 4:
-                    updateEventStartDate();
-                    break;
-                case 5:
-                    updateEventEndDate();
-                    break;
-                case 6:
-                    manageSession();
-                    break;
-                case 7:
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
+                switch (choice) {
+                    case 1:
+                        manageSubmissions();
+                        break;
+                    case 2:
+                        updateEventDescritor();
+                        break;
+                    case 3:
+                        updateEventDirector();
+                        break;
+                    case 4:
+                        updateEventStartDate();
+                        break;
+                    case 5:
+                        updateEventEndDate();
+                        break;
+                    case 6:
+                        manageSession();
+                        break;
+                    case 7:
+                        return;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid choice. Please try again.");
             }
         }
     }
