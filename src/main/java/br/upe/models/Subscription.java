@@ -22,7 +22,7 @@ public class Subscription {
         return eventId;
     }
 
-    public void serEventId(Long eventId) {
+    public void setEventId(Long eventId) {
         this.eventId = eventId;
     }
 

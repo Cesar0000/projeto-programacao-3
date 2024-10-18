@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Blob;
 
 import java.text.MessageFormat;
@@ -22,7 +23,7 @@ public class UserRepository {
         this.connection = connection;
     }
 
-    public void create(User user) {
+    public void create(User user) throws SQLException {
         String query = """
             INSERT INTO user (name, email, password) VALUES (?, ?, ?)
         """;
@@ -56,17 +57,17 @@ public class UserRepository {
         }
     }
 
-    public void update(User user) {
+    public void update(User user) throws SQLException {
         String baseQuery = """
             UPDATE user SET name = {0}, email = {1}, password = {3} WHERE id = ?
         """;
 
-        Objects.requireNonNull(user.id, "The user id must not be null");
+        Objects.requireNonNull(user.getId(), "The user id must not be null");
 
         // Decide what columns will be used in the SET clause
         String nameColumn = user.getName() != null ? "?" : "name";
         String emailColumn = user.getEmail() != null ? "?" : "email";
-        String passwordColumn = user.getPassword().legth != 0 ? "?" : "password";
+        String passwordColumn = user.getPassword().length != 0 ? "?" : "password";
 
         // Construct the query
         String query = MessageFormat.format(baseQuery, nameColumn, emailColumn, passwordColumn);
@@ -96,7 +97,7 @@ public class UserRepository {
         }
     }
 
-    public Optional<User> findById(long id) {
+    public Optional<User> findById(long id) throws SQLException {
         String query = """
             SELECT *
             FROM user
@@ -126,7 +127,7 @@ public class UserRepository {
         }
     }
 
-    public Optional<User> findByEmail(String email) {
+    public Optional<User> findByEmail(String email) throws SQLException {
         String query = """
             SELECT *
             FROM user
@@ -156,7 +157,7 @@ public class UserRepository {
         }
     }
 
-    public List<User> findAll() {
+    public List<User> findAll() throws SQLException {
         String query = """
             SELECT *
             FROM user   
@@ -184,7 +185,7 @@ public class UserRepository {
         }
     }
 
-    public void deleteById(long id) {
+    public void deleteById(long id) throws SQLException {
         String query = """
             DELETE FROM user WHERE id = ?
         """;

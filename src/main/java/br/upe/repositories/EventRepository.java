@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class EventRepository {
     private final Connection connection;
@@ -18,7 +19,7 @@ public class EventRepository {
         this.connection = connection;
     }
 
-    public Optional<Event> findById(long id) {
+    public Optional<Event> findById(long id) throws SQLException {
         String query = """
             SELECT *
             FROM event
@@ -47,7 +48,7 @@ public class EventRepository {
         }
     }
 
-    public List<Event> findAll() {
+    public List<Event> findAll() throws SQLException {
         String query = """
             SELECT *
             FROM event

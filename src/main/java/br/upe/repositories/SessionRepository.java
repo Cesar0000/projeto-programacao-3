@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SessionRepository {
@@ -18,7 +19,7 @@ public class SessionRepository {
         this.connection = connection;
     }
 
-    public Optional<Session> findById(long eventId, long sessionNumber) {
+    public Optional<Session> findById(long eventId, long sessionNumber) throws SQLException {
         String query = """
             SELECT *
             FROM session
@@ -44,11 +45,11 @@ public class SessionRepository {
             session.setStartTime(resultSet.getTimestamp("start_time").toLocalDateTime());
             session.setEndTime(resultSet.getTimestamp("end_time").toLocalDateTime());
 
-            return Optional.of(event);
+            return Optional.of(session);
         }
     }
 
-    public List<Session> findAll() {
+    public List<Session> findAll() throws SQLException {
         String query = """
             SELECT *
             FROM session

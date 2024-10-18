@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class SubscriptionRepository {
@@ -19,7 +20,7 @@ public class SubscriptionRepository {
         this.connection = connection;
     }
 
-    public void create(Subscription subscription) {
+    public void create(Subscription subscription) throws SQLException {
         String query = """
             INSERT INTO subscription (user_id, event_id, session_number, timestamp) VALUES (?, ?, ?, ?)
         """;
@@ -44,7 +45,7 @@ public class SubscriptionRepository {
         }
     }
 
-    public Optional<Subscription> findById(long userId, long eventId, long sessionNumber) {
+    public Optional<Subscription> findById(long userId, long eventId, long sessionNumber) throws SQLException {
         String query = """
             SELECT *
             FROM subscription
@@ -74,7 +75,7 @@ public class SubscriptionRepository {
         }
     }
 
-    public List<Subscription> findAllSubscriptionsForUserId(long userId) {
+    public List<Subscription> findAllSubscriptionsForUserId(long userId) throws SQLException {
         String query = """
             SELECT *
             FROM subscription
@@ -103,7 +104,7 @@ public class SubscriptionRepository {
         }
     }
 
-    public List<Subscription> findAllSubscriptionsForSessionId(long eventId, long sessionNumber) {
+    public List<Subscription> findAllSubscriptionsForSessionId(long eventId, long sessionNumber) throws SQLException {
         String query = """
             SELECT *
             FROM subscription
@@ -133,7 +134,7 @@ public class SubscriptionRepository {
         }
     }
 
-    public void deleteById(long userId, long eventId, long sessionNumber) {
+    public void deleteById(long userId, long eventId, long sessionNumber) throws SQLException {
         String query = """
             DELETE FROM subscription WHERE user_id = ? AND event_id = ? AND session_number = ?
         """;
