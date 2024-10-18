@@ -5,7 +5,7 @@ import java.time.Instant;
 public class Subscription {
     private Long userId;
     private Long eventId;
-    private Long sessionId;
+    private Long sessionNumber;
     private Instant timestamp;
 
     public Subscription() {}
@@ -26,12 +26,12 @@ public class Subscription {
         this.eventId = eventId;
     }
 
-    public Long getSessionId() {
-        return sessionId;
+    public Long getSessionNumber() {
+        return sessionNumber;
     }
 
-    public void setSessionId(Long sessionId) {
-        this.sessionId = sessionId;
+    public void setSessionNumber(Long sessionNumber) {
+        this.sessionNumber = sessionNumber;
     }
 
     public Instant getTimestamp() {

@@ -1,11 +1,10 @@
 package br.upe.models;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Session {
     private Long eventId;
-    private Long sessionId;
+    private Long sessionNumber;
     private String name;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
@@ -20,12 +19,12 @@ public class Session {
         this.eventId = eventId;
     }
 
-    public Long getSessionId() {
-        return sessionId;
+    public Long getSessionNumber() {
+        return sessionNumber;
     }
 
-    public void setSessionId(Long sessionId) {
-        this.sessionId = sessionId;
+    public void setSessionNumber(Long sessionNumber) {
+        this.sessionNumber = sessionNumber;
     }
 
     public String getName() {
