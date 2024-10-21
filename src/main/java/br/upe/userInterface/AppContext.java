@@ -2,39 +2,25 @@ package br.upe.userInterface;
 
 import br.upe.userInterface.ScreenManager;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class AppContext {
-    private static final AppContext instance = new AppContext();
+    private static ExecutorService threadPool;
+    private static ScreenManager mainStageScreenManager;
 
-    private final ExecutorService threadPool;
-    private final Map<String, ScreenManager> screenManagers;
-
-    private AppContext() {
-        this.threadPool = Executors.newFixedThreadPool(1);
-        this.screenManagers = new HashMap<String, ScreenManager>();
+    public static ExecutorService getThreadPool () {
+        return AppContext.threadPool;
     }
 
-    public static AppContext getContext() {
-        return instance;
+    public static void setThreadPool(ExecutorService threadPool) {
+        AppContext.threadPool = threadPool;
     }
 
-    public ExecutorService getThreadPool () {
-        return threadPool;
+    public static ScreenManager getMainStageScreenManager() {
+        return AppContext.mainStageScreenManager;
     }
 
-    public ScreenManager getStageScreenManager(String stageName) {
-        if (!screenManagers.containsKey(stageName)) {
-            throw new IllegalArgumentException("There isn't an entry for the stage name passed");
-        }
-
-        return screenManagers.get(stageName);
-    }
-
-    public void setStageScreenManager(String stageName, ScreenManager screenManager) {
-        screenManager.put(stageName, screenManager);
+    public static void setMainStageScreenManager(ScreenManager mainStageScreenManager) {
+        AppContext.mainStageScreenManager = mainStageScreenManager;
     }
 }
