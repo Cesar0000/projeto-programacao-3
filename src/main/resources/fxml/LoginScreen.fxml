@@ -30,7 +30,7 @@
 
    <!-- Centro com o formulário de login e fundo arredondado -->
    <center>
-      <AnchorPane prefHeight="480.0" prefWidth="464.0" style="-fx-background-color: #214491;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="480.0" prefWidth="464.0" style="-fx-background-color: #292929;" BorderPane.alignment="CENTER">
          <children>
 
             <!-- StackPane para o fundo e formulário -->
