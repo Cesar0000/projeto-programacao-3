@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class AuthController {
+    private final StateController stateController;
+    private final CRUDController crudController;
+
     public AuthController(StateController stateController, CRUDController crudController) {
         this.stateController = stateController;
         this.crudController = crudController;
     }
-    private final StateController stateController;
-    private final CRUDController crudController;
+
+
 
     public boolean createNewUser(String email, String password){
         if(QueryState.userFromEmail(email) != null) return false;
