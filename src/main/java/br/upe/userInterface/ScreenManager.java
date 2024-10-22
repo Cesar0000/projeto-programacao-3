@@ -2,6 +2,7 @@ package br.upe.userInterface;
 
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 
 import java.util.Map;
@@ -33,17 +34,31 @@ public class ScreenManager {
     }
 
     public void goToScreen(String screenName) {
-        Parent currentRoot = stage.getScene().getRoot();
+        Scene scene = stage.getScene();
+        Parent currentScreen = scene.getRoot();
+        stack.addFirst(currentScreen);
+
+        Parent newScreen = getScreen(screenName);
+        scene.setRoot(newScreen);
     }
 
-    public void goToScreenAndClearStack() {
+    public void goToScreenAndClearStack(String screenName) {
+        Parent newScreen = getScreen(screenName);
+        stage.getScene().setRoot(newScreen);
+        stack.clear();
     }
 
     public void goToPreviousScreen() {
+        if (stack.size() == 0) {
+            throw new IllegalStateException("There isn't a previous screen to got to");
+        }
+
+        Parent previousScreen = stack.removeFirst();
+        stage.getScene().setRoot(previousScreen);
     }
 
     public boolean hasPreviousScreen() {
-        return false;
+        return stack.size() > 0 ? true : false;
     }
 
     public Parent getScreen(String screenName) {

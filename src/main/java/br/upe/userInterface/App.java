@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.concurrent.ExecutorCompletionService;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,7 +22,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage mainStage) throws Exception {
-        Exception firstException = null;
+        Exception thrownException = null;
         ExecutorService threadPool = null;
         try {
             Database.initializeDatabase();
@@ -32,6 +32,8 @@ public class App extends Application {
 
             Map<String, String> screenPaths = new HashMap<String, String>();
             screenPaths.put("loginScreen", "/fxml/LoginScreen.fxml");
+            screenPaths.put("registerScreen", "/fxml/RegisterScreen.fxml");
+            screenPaths.put("homeScreen", "/fxml/HomeScreen.fxml");
 
             ScreenManager mainStageScreenManager = new ScreenManager(mainStage, screenPaths);
             AppContext.setMainStageScreenManager(mainStageScreenManager);
@@ -43,8 +45,7 @@ public class App extends Application {
             mainStage.show();
         }
         catch (Exception error) {
-            firstException = error;
-            throw error;
+            thrownException = error;
         }
         finally {
             if (threadPool != null) {
@@ -55,13 +56,16 @@ public class App extends Application {
                 Database.shutDown();
             }
             catch (Exception error) {
-                if (firstException != null) {
-                    firstException.addSuppressed(error);
-                    throw firstException;
+                if (thrownException != null) {
+                    thrownException.addSuppressed(error);
                 }
                 else {
-                    throw error;
+                    thrownException = error;
                 }
+            }
+
+            if (thrownException != null) {
+                throw thrownException;
             }
         }
     }
