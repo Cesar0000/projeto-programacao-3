@@ -23,7 +23,7 @@ public class UserRepository {
         this.connection = connection;
     }
 
-    public void create(br.upe.dataPersistence.pojos.User user) throws SQLException {
+    public void create(User user) throws SQLException {
         String query = """
             INSERT INTO user (name, email, password) VALUES (?, ?, ?)
         """;

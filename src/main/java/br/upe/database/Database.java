@@ -28,7 +28,9 @@ public class Database {
 
     public static void initializeDatabase() throws SQLException {
         String createURL = baseURL + ";create=true";
-        try (Connection connection = DriverManager.getConnection(createURL)) {
+        Connection connection = DriverManager.getConnection(createURL);
+
+        try (connection) {
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
 
@@ -54,7 +56,7 @@ public class Database {
                     )
                 """);
 
-                statement.addbatch("""
+                statement.addBatch("""
                     INSERT INTO event (name, description, start_date, end_date)
                         VALUES (
                             'Evento UFPE',
@@ -63,7 +65,7 @@ public class Database {
                             DATE('2024-10-25')
                         )
                 """);
-                statement.addbatch("""
+                statement.addBatch("""
                     INSERT INTO event (name, description, start_date, end_date)
                         VALUES (
                             'Evento UPE',
@@ -72,7 +74,7 @@ public class Database {
                             DATE('2024-11-10')
                         )
                 """);
-                statement.addbatch("""
+                statement.addBatch("""
                     INSERT INTO event (name, description, start_date, end_date)
                         VALUES (
                             'Evento UFRJ',
@@ -81,7 +83,7 @@ public class Database {
                             DATE('2024-11-25')
                         )
                 """);
-                statement.addbatch("""
+                statement.addBatch("""
                     INSERT INTO event (name, description, start_date, end_date)
                         VALUES (
                             'Evento UFMG', 'Evento organizado pela Universidade Federal de Minas Gerais',
@@ -89,7 +91,7 @@ public class Database {
                             DATE('2024-12-09')
                         )
                 """);
-                statement.addbatch("""
+                statement.addBatch("""
                     INSERT INTO event (name, description, start_date, end_date)
                         VALUES (
                             'Evento Unifesp',

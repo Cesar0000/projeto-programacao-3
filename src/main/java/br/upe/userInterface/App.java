@@ -23,7 +23,7 @@ public class App extends Application {
     @Override
     public void start(Stage mainStage) throws Exception {
         Exception firstException = null;
-        ExecutorService threadPool;
+        ExecutorService threadPool = null;
         try {
             Database.initializeDatabase();
 
@@ -34,7 +34,7 @@ public class App extends Application {
             screenPaths.put("loginScreen", "/fxml/LoginScreen.fxml");
 
             ScreenManager mainStageScreenManager = new ScreenManager(mainStage, screenPaths);
-            AppContext.setMainStageScreenManager("mainStage", mainStageScreenManager);
+            AppContext.setMainStageScreenManager(mainStageScreenManager);
 
             mainStage.setTitle("Nexus");
             Parent loginScreen = mainStageScreenManager.getScreen("loginScreen");
@@ -47,15 +47,21 @@ public class App extends Application {
             throw error;
         }
         finally {
-            try {
+            if (threadPool != null) {
                 threadPool.shutdownNow();
+            }
+
+            try {
                 Database.shutDown();
             }
             catch (Exception error) {
                 if (firstException != null) {
-                    error.addSuppressed(firstException);
+                    firstException.addSuppressed(error);
+                    throw firstException;
                 }
-                throw error;
+                else {
+                    throw error;
+                }
             }
         }
     }
