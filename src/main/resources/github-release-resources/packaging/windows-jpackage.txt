@@ -1,5 +1,9 @@
+--type msi
 --name ${app.name}
---icon "${project.basedir}/app-icon.png"
+--win-menu
+--win-menu-group ${windows.vendor}
+--vendor ${windows.vendor}
+--icon "${project.basedir}/app-icons/app-icon.ico"
 --dest "${project.build.directory}"
 --main-jar ${project.build.finalName}.jar
 --main-class ${main-class}
@@ -7,3 +11,6 @@
 --app-version ${app.version}
 --runtime-image "${project.build.directory}/jvm-image"
 --temp "${project.build.directory}/installer-work"
+--win-upgrade-uuid ${windows.upgrade.uuid}
+--description "${project.description}"
+--copyright "(C) ${windows.vendor}"
