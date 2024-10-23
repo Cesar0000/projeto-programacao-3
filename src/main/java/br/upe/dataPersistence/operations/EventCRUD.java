@@ -9,10 +9,13 @@ import java.util.Collection;
 import java.util.UUID;
 
 public class EventCRUD extends BaseCRUD {
+
+    private static final String FILE_PATH = ".\\state\\events.csv";
+
     public EventCRUD(){ super(); }
 
     public void createEvent(GreatEvent event){
-        try(BufferedWriter buffer = new BufferedWriter(new FileWriter(".\\state\\events.csv", true))){
+        try(BufferedWriter buffer = new BufferedWriter(new FileWriter(FILE_PATH, true))){
             buffer.write(ParserInterface.validadeString(event.getUuid()) + ";");
             buffer.write(ParserInterface.validadeString(event.getDescritor()) + ";");
             buffer.write(ParserInterface.validadeString(event.getDirector()) + ";");
@@ -34,13 +37,13 @@ public class EventCRUD extends BaseCRUD {
     }
     public void deleteEvent(UUID eventUuid){
         ArrayList<String> fileCopy = new ArrayList<>();
-        try(BufferedReader buffer = new BufferedReader(new FileReader(".\\state\\events.csv"))){
+        try(BufferedReader buffer = new BufferedReader(new FileReader(FILE_PATH))){
             while(buffer.ready()){
                 fileCopy.add(buffer.readLine());
             }
         } catch (Exception e) {}
 
-        try(BufferedWriter buffer = new BufferedWriter(new FileWriter(".\\state\\events.csv"))){
+        try(BufferedWriter buffer = new BufferedWriter(new FileWriter(FILE_PATH))){
             for(String line: fileCopy){
                 if(line.contains(eventUuid.toString())) continue;
                 buffer.write(line);
@@ -58,7 +61,7 @@ public class EventCRUD extends BaseCRUD {
     }
 
     public static GreatEvent returnEvent(UUID eventUuid){
-        try(BufferedReader buffer = new BufferedReader(new FileReader(".\\state\\events.csv"))){
+        try(BufferedReader buffer = new BufferedReader(new FileReader(FILE_PATH))){
             while(buffer.ready()){
                 String line = buffer.readLine();
                 if(line.contains(eventUuid.toString())) {
@@ -72,7 +75,7 @@ public class EventCRUD extends BaseCRUD {
     }
     public static Collection<GreatEvent> returnEvent(){
         Collection<GreatEvent> events = new ArrayList<>();
-        try(BufferedReader buffer = new BufferedReader(new FileReader(".\\state\\events.csv"))){
+        try(BufferedReader buffer = new BufferedReader(new FileReader(FILE_PATH))){
             while(buffer.ready()){
                 String line = buffer.readLine();
                 if(!line.isEmpty()) {
