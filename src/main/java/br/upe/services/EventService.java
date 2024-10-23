@@ -1,22 +1,28 @@
 package br.upe.services;
 
 import br.upe.repositories.EventRepository;
-
+import br.upe.database.Database;
 import br.upe.models.Event;
 
+import java.sql.Connection;
 import java.util.List;
-import java.util.Optional;
-import java.util.ArrayList;
+
+import javafx.concurrent.Task;
 
 public class EventService {
 
     public EventService() {}
 
-    public Optional<Event> findById(int id) {
-        return Optional.empty();
-    }
-
-    public List<Event> findAll() {
-        return new ArrayList<Event>();
+    public Task<List<Event>> getFindAllEventsTask() {
+        return new Task<List<Event>>() {
+            @Override
+            protected Void call() throws Exception {
+                try (Connection connection = Database.getConnection()) {
+                    EventRepository eventRepository = new EventRepository(connection);
+                    List<Event> events = eventRepository.findAll();
+                    return events;
+                }
+            }
+        };
     }
 }
