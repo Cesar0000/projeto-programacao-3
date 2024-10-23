@@ -36,7 +36,7 @@
                pickOnBounds="true"
                preserveRatio="true">
                <image>
-                  <Image url="@../images/logo-with-name.png" />
+                  <Image url="@../../images/logo-with-name.png" />
                </image>
             </ImageView>
          </children>

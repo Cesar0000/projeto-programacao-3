@@ -25,7 +25,7 @@ public class UserRepository {
 
     public void create(User user) throws SQLException {
         String query = """
-            INSERT INTO user (name, email, password) VALUES (?, ?, ?)
+            INSERT INTO users (name, email, password) VALUES (?, ?, ?)
         """;
 
         // Validate fields
@@ -57,7 +57,7 @@ public class UserRepository {
 
     public void update(User user) throws SQLException {
         String baseQuery = """
-            UPDATE user SET name = {0}, email = {1}, password = {3} WHERE id = ?
+            UPDATE users SET name = {0}, email = {1}, password = {3} WHERE id = ?
         """;
 
         Objects.requireNonNull(user.getId(), "The user id must not be null");
@@ -96,7 +96,7 @@ public class UserRepository {
     public Optional<User> findById(long id) throws SQLException {
         String query = """
             SELECT *
-            FROM user
+            FROM users
             WHERE id = ?
         """;
 
@@ -124,7 +124,7 @@ public class UserRepository {
     public Optional<User> findByEmail(String email) throws SQLException {
         String query = """
             SELECT *
-            FROM user
+            FROM users
             WHERE email = ?
         """;
 
@@ -152,7 +152,7 @@ public class UserRepository {
     public List<User> findAll() throws SQLException {
         String query = """
             SELECT *
-            FROM user   
+            FROM users
         """;
 
         try (Statement statement = connection.createStatement()) {
@@ -177,7 +177,7 @@ public class UserRepository {
 
     public void deleteById(long id) throws SQLException {
         String query = """
-            DELETE FROM user WHERE id = ?
+            DELETE FROM users WHERE id = ?
         """;
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {

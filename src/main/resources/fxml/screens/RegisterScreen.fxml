@@ -9,7 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #EFEFEF; -fx-background-image: url('/images/Background.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.controllers.javafx.RegisterScreenController">
+<AnchorPane
+    prefHeight="480.0"
+    prefWidth="800.0"
+    style="-fx-background-color: #EFEFEF; -fx-background-image: url('/images/Background.png'); -fx-background-size: cover;"
+    xmlns="http://javafx.com/javafx/23"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="br.upe.controllers.RegisterScreenController">
     <children>
 
         <StackPane layoutX="250.0" layoutY="90.0" prefHeight="300.0" prefWidth="280.0">
@@ -31,8 +37,8 @@
                     <PasswordField fx:id="passwordField" prefWidth="200.0" promptText="Digite uma senha" />
                 </VBox>
 
-                <Button fx:id="createAccountButton" onAction="#handleCreateAccount" prefHeight="25.0" prefWidth="296.0" style="-fx-background-color: #439121; -fx-text-fill: white; -fx-background-radius: 10;" text="Criar conta" />
-            <Button fx:id="createAccountButton1" alignment="CENTER" contentDisplay="CENTER" onAction="#handleCreateAccount" prefHeight="25.0" prefWidth="360.0" style="-fx-background-color: #439121; -fx-text-fill: white; -fx-background-radius: 10;" text="Login" textAlignment="CENTER" />
+                <Button fx:id="createAccountButton" prefHeight="25.0" prefWidth="296.0" style="-fx-background-color: #439121; -fx-text-fill: white; -fx-background-radius: 10;" text="Criar conta" />
+            <Button fx:id="createAccountButton1" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="360.0" style="-fx-background-color: #439121; -fx-text-fill: white; -fx-background-radius: 10;" text="Login" textAlignment="CENTER" />
             </VBox>
         </StackPane>
     </children>

@@ -22,7 +22,7 @@ public class SubscriptionRepository {
 
     public void create(Subscription subscription) throws SQLException {
         String query = """
-            INSERT INTO subscription (user_id, event_id, session_number, created_at) VALUES (?, ?, ?, ?)
+            INSERT INTO subscriptions (user_id, event_id, session_number, created_at) VALUES (?, ?, ?, ?)
         """;
 
         // Validate fields
@@ -48,7 +48,7 @@ public class SubscriptionRepository {
     public Optional<Subscription> findById(long userId, long eventId, long sessionNumber) throws SQLException {
         String query = """
             SELECT *
-            FROM subscription
+            FROM subscriptions
             WHERE user_id = ? AND event_id = ? AND session_number = ?
         """;
 
@@ -78,7 +78,7 @@ public class SubscriptionRepository {
     public List<Subscription> findAllSubscriptionsForUserId(long userId) throws SQLException {
         String query = """
             SELECT *
-            FROM subscription
+            FROM subscriptions
             WHERE user_id = ?
         """;
 
@@ -107,7 +107,7 @@ public class SubscriptionRepository {
     public List<Subscription> findAllSubscriptionsForSessionId(long eventId, long sessionNumber) throws SQLException {
         String query = """
             SELECT *
-            FROM subscription
+            FROM subscriptions
             WHERE event_id = ? AND session_number = ?
         """;
 
@@ -136,7 +136,7 @@ public class SubscriptionRepository {
 
     public void deleteById(long userId, long eventId, long sessionNumber) throws SQLException {
         String query = """
-            DELETE FROM subscription WHERE user_id = ? AND event_id = ? AND session_number = ?
+            DELETE FROM subscriptions WHERE user_id = ? AND event_id = ? AND session_number = ?
         """;
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {

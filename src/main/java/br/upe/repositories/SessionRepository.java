@@ -22,7 +22,7 @@ public class SessionRepository {
     public Optional<Session> findById(long eventId, long sessionNumber) throws SQLException {
         String query = """
             SELECT *
-            FROM session
+            FROM sessions
             WHERE event_id = ? AND session_number = ?
         """;
 
@@ -53,7 +53,7 @@ public class SessionRepository {
     public List<Session> findAll() throws SQLException {
         String query = """
             SELECT *
-            FROM session
+            FROM sessions
         """;
 
         try (Statement statement = connection.createStatement()) {
@@ -81,7 +81,7 @@ public class SessionRepository {
     public List<Session> findAllSessionsForEventId(long eventId) throws SQLException {
         String query = """
             SELECT *
-            FROM session
+            FROM sessions
             WHERE event_id = ?
         """;
 
