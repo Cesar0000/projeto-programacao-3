@@ -77,4 +77,35 @@ public class SessionRepository {
             return sessions;
         }
     }
+
+    public List<Session> findAllSessionsForEventId(long eventId) throws SQLException {
+        String query = """
+            SELECT *
+            FROM session
+            WHERE event_id = ?
+        """;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setLong(1, eventId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Session> eventSessions = new ArrayList<Session>();
+
+            // Fill the list with all the event sessions found
+            while (resultSet.next() != false) {
+                Session session = new Session();
+                session.setEventId(resultSet.getLong("event_id"));
+                session.setSessionNumber(resultSet.getLong("session_number"));
+                session.setName(resultSet.getString("name"));
+                session.setDate(resultSet.getDate("date").toLocalDate());
+                session.setStartTime(resultSet.getTime("start_time").toLocalTime());
+                session.setEndTime(resultSet.getTime("end_time").toLocalTime());
+
+                eventSessions.add(session);
+            }
+
+            return eventSessions;
+        }
+    }
 }
