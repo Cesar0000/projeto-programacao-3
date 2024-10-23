@@ -16,7 +16,7 @@ public class EventService {
     public Task<List<Event>> getFindAllEventsTask() {
         return new Task<List<Event>>() {
             @Override
-            protected Void call() throws Exception {
+            protected List<Event> call() throws Exception {
                 try (Connection connection = Database.getConnection()) {
                     EventRepository eventRepository = new EventRepository(connection);
                     List<Event> events = eventRepository.findAll();
