@@ -1,11 +1,4 @@
-package br.upe.controllers.javafx;
-
-import javafx.event.ActionEvent;
+package br.upe.controllers;
 
 public class HomeScreenController {
-    public void handleExitButton(ActionEvent actionEvent) {
-    }
-
-    public void handleConfigButton(ActionEvent actionEvent) {
-    }
 }
