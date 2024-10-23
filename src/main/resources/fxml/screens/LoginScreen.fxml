@@ -20,7 +20,7 @@
    minWidth="800.0"
    prefHeight="480.0"
    prefWidth="800.0"
-   xmlns="http://javafx.com/javafx/23"
+   xmlns="http://javafx.com/javafx/21"
    xmlns:fx="http://javafx.com/fxml/1"
    fx:controller="br.upe.controllers.LoginScreenController">
 
