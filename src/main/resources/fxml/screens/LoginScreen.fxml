@@ -91,8 +91,10 @@
                   <VBox prefHeight="88.0" prefWidth="235.0" spacing="10.0">
                      <Label style="-fx-text-fill: #585376;" text="E-mail" />
                      <TextField fx:id="emailField" promptText="Digite o seu e-mail" />
+                     <Label fx:id="emailValidationLabel" text=""/>
                      <Label style="-fx-text-fill: #585376;" text="Senha" />
                      <PasswordField fx:id="passwordField" promptText="Digite a sua senha" />
+                     <Label fx:id="passwordValidationLabel" text=""/>
                   </VBox>
                   <Button
                      fx:id="loginButton"
