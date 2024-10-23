@@ -1,16 +1,13 @@
 package br.upe.userInterface;
 
 import br.upe.userInterface.AppContext;
-import br.upe.userInterface.ScreenManager;
 import br.upe.database.Database;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.Map;
-import java.util.HashMap;
+import javafx.fxml.FXMLLoader;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,18 +25,11 @@ public class App extends Application {
             Database.initializeDatabase();
 
             threadPool = Executors.newFixedThreadPool(1);
-            AppContext.setThreadPool(threadPool);
-
-            Map<String, String> screenPaths = new HashMap<String, String>();
-            screenPaths.put("loginScreen", "/fxml/LoginScreen.fxml");
-            screenPaths.put("registerScreen", "/fxml/RegisterScreen.fxml");
-            screenPaths.put("homeScreen", "/fxml/HomeScreen.fxml");
-
-            ScreenManager mainStageScreenManager = new ScreenManager(mainStage, screenPaths);
-            AppContext.setMainStageScreenManager(mainStageScreenManager);
+            AppContext.threadPool = threadPool;
+            AppContext.mainStage = mainStage;
 
             mainStage.setTitle("Nexus");
-            Parent loginScreen = mainStageScreenManager.getScreen("loginScreen");
+            Parent loginScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/LoginScreen.fxml"));
             Scene mainStageScene = new Scene(loginScreen, 920, 520);
             mainStage.setScene(mainStageScene);
             mainStage.show();
