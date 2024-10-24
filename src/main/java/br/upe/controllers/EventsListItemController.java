@@ -5,18 +5,26 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class EventListItemController {
+public class EventsListItemController {
 
     @FXML
-    private Label tituloLabel;
+    private Label eventNameLabel;
 
     @FXML
-    private Label descricaoLabel;
+    private Label eventDescriptionLabel;
 
     @FXML
-    private Button detalhesButton;
+    private Button seeEventDetailsButton;
 
-    private Event event;
+    @FXML
+    private void initialize() {
+        
+    }
+
+    @FXML
+    private void handleSeeEventDetailsButtonClick() {
+
+    }
 
     // Método para definir os dados do evento
     public void setEventData(Event event) {

@@ -2,7 +2,11 @@ package br.upe.controllers;
 
 import br.upe.models.Event;
 import br.upe.services.EventService;
-import br.upe.userInterface.AppContext;
+import br.upe.userinterface.AppContext;
+
+import java.io.IOException;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +22,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.io.IOException;
-import java.util.List;
-
 public class EventsScreenController {
 
     @FXML
@@ -34,7 +35,7 @@ public class EventsScreenController {
         eventService = new EventService();
 
         // Carrega os eventos quando a tela é aberta
-        loadEvents();
+        //loadEvents();
     }
 
     @FXML
