@@ -59,7 +59,7 @@
         </Pane>
     </HBox>
 
-    <!-- ScrollPane com ListView para eventos -->
+    <!-- ScrollPane com ListView para eventos-->
     <ScrollPane layoutX="68.0" layoutY="168.0" prefHeight="286.0" prefWidth="684.0" AnchorPane.bottomAnchor="29.0">
         <ListView fx:id="eventList" prefHeight="285.0" prefWidth="687.0" />
     </ScrollPane>
