@@ -12,42 +12,38 @@ public class SubmissionCRUD extends BaseCRUD {
 
     public SubmissionCRUD() { super(); }
 
-    public void createSubmission(Submission submission) {
-        try(BufferedWriter buffer = new BufferedWriter(new FileWriter(".\\state\\submissions.csv", true))) {
-            buffer.write(ParserInterface.validadeString(submission.getUuid()) + ";");
-            buffer.write(ParserInterface.validadeString(submission.getDescritor()) + ";");
-            buffer.write(ParserInterface.validadeString(submission.getEventUuid()) + ";");
-            buffer.write(ParserInterface.validadeString(submission.getUserUuid()) + ";");
-            buffer.write((submission.getDate() != null ? ParserInterface.validadeString(submission.getDate().toInstant()): "") + ";");
+    public static String path = ".\\state\\submissions.csv";
 
-            buffer.newLine();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    public static Submission returnSubmission(UUID submissionUuid) {
+
+        try (BufferedReader buffer = new BufferedReader(new FileReader(path))) {
+            while (buffer.ready()) {
+                String line = buffer.readLine();
+                if (line.contains(submissionUuid.toString())) {
+                    return ParserInterface.parseSubmission(line);
+                }
+            }
+
+        } catch (IOException e) {}
+
+        return null;
     }
 
-    public void deleteSubmission(UUID submissionUuid) {
-        ArrayList<String> fileCopy = new ArrayList<>();
+    public static Collection<Submission> returnSubmission() {
+        Collection<Submission> submissions = new ArrayList<>();
 
-        try(BufferedReader buffer = new BufferedReader(new FileReader(".\\state\\submissions.csv"))) {
-            while(buffer.ready()) {
-                fileCopy.add(buffer.readLine());
+        try (BufferedReader buffer = new BufferedReader(new FileReader(path))) {
+            while (buffer.ready()) {
+                String line = buffer.readLine();
+                if (!line.isEmpty()) {
+                    Submission newSubmission = ParserInterface.parseSubmission(line);
+                    if(newSubmission != null) submissions.add(newSubmission);
+                }
             }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {}
 
-        try(BufferedWriter buffer = new BufferedWriter(new FileWriter(".\\state\\submissions.csv"))) {
-            for (String line : fileCopy) {
-                if (line.contains(submissionUuid.toString())) continue;
-                buffer.write(line);
-                buffer.newLine();
-            }
 
-        } catch(Exception e) {
-            e.printStackTrace();
-
-        }
+        return submissions;
     }
 
     public void updateSubmission(UUID submissionUuid, Submission source) {
@@ -61,35 +57,41 @@ public class SubmissionCRUD extends BaseCRUD {
         createSubmission(existingSubmission);
     }
 
-    public static Submission returnSubmission(UUID submissionUuid) {
+    public void createSubmission(Submission submission) {
+        try (BufferedWriter buffer = new BufferedWriter(new FileWriter(path, true))) {
+            buffer.write(ParserInterface.validadeString(submission.getUuid()) + ";");
+            buffer.write(ParserInterface.validadeString(submission.getDescritor()) + ";");
+            buffer.write(ParserInterface.validadeString(submission.getEventUuid()) + ";");
+            buffer.write(ParserInterface.validadeString(submission.getUserUuid()) + ";");
+            buffer.write((submission.getDate() != null ? ParserInterface.validadeString(submission.getDate().toInstant()): "") + ";");
 
-        try (BufferedReader buffer = new BufferedReader(new FileReader(".\\state\\submissions.csv"))) {
-            while (buffer.ready()) {
-                String line = buffer.readLine();
-                if (line.contains(submissionUuid.toString())) {
-                    return ParserInterface.parseSubmission(line);
-                }
-            }
-
-        } catch (IOException e) {}
-
-        return null;
+            buffer.newLine();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
   
-    public static Collection<Submission> returnSubmission() {
-        Collection<Submission> submissions = new ArrayList<>();
+    public void deleteSubmission(UUID submissionUuid) {
+        ArrayList<String> fileCopy = new ArrayList<>();
 
-        try (BufferedReader buffer = new BufferedReader(new FileReader(".\\state\\submissions.csv"))) {
-            while (buffer.ready()) {
-                String line = buffer.readLine();
-                if (!line.isEmpty()) {
-                    Submission newSubmission = ParserInterface.parseSubmission(line);
-                    if(newSubmission != null) submissions.add(newSubmission);
-                }
+        try (BufferedReader buffer = new BufferedReader(new FileReader(path))) {
+            while(buffer.ready()) {
+                fileCopy.add(buffer.readLine());
             }
-        } catch (IOException e) {}
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
+        try (BufferedWriter buffer = new BufferedWriter(new FileWriter(path))) {
+            for (String line : fileCopy) {
+                if (line.contains(submissionUuid.toString())) continue;
+                buffer.write(line);
+                buffer.newLine();
+            }
 
-        return submissions;
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        }
     }
 }

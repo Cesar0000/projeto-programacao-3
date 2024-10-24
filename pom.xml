@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.upe</groupId>
-    <artifactId>projeto-programacao-3</artifactId>
+    <artifactId>1</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -182,8 +182,8 @@
             </activation>
 
             <properties>
-                <!-- <app.version>1.0.${env.GITHUB_RUN_NUMBER}</app.version> -->
-                <app.name>Nexus</app.name>
+
+            <app.name>Nexus</app.name>
                 <jvm.modules>javafx.controls,javafx.fxml</jvm.modules>
                 <windows.upgrade.uuid>bba015ac-8747-47c4-ad2a-55f200760288</windows.upgrade.uuid>
                 <windows.vendor>UPE</windows.vendor>
