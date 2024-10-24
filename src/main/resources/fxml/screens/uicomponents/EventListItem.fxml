@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox alignment="CENTER_LEFT" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Título do evento -->
+    <Label fx:id="tituloLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Título do Evento" />
+
+    <!-- Descrição do evento -->
+    <Label fx:id="descricaoLabel" style="-fx-font-size: 14px;" text="Descrição do Evento" />
+
+    <!-- Botão para ver detalhes -->
+    <Button fx:id="detalhesButton" prefWidth="117.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Ver detalhes" />
+</HBox>
