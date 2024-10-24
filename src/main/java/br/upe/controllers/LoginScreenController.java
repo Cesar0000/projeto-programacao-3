@@ -33,13 +33,7 @@ public class LoginScreenController {
     private TextField emailField;
 
     @FXML
-    private Label emailValidationLabel;
-
-    @FXML
     private PasswordField passwordField;
-
-    @FXML
-    private Label passwordValidationLabel;
 
     @FXML
     private Button loginButton;
@@ -48,33 +42,12 @@ public class LoginScreenController {
     private Button registerButton;
 
     @FXML
-    private void initialize() {
-        emailField.setOnAction(e -> {
-            validateEmailField();
-        });
-        passwordField.setOnAction(e -> {
-            validatePasswordField();
-        });
-
-        emailField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                validateEmailField();
-            }
-        });
-        passwordField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                validatePasswordField();
-            }
-        });
-    }
-
-    @FXML
     private void handleLoginButtonClick() {
         String email = emailField.getText();
         String password = passwordField.getText();
 
         if (!(userService.validateEmail(email) && userService.validatePassword(password))) {
-            showError("Erro ao entrar", "Os dados estão inválidos.");
+            showError("Erro ao entrar", "Os dados não são válidos.");
             return;
         }
 
@@ -106,7 +79,7 @@ public class LoginScreenController {
             catch (IOException error) {
                 authenticationService.logout();
                 showError(
-                    "Erro ao carregar próxima tela",
+                    "Erro ao carregar a próxima tela",
                     "Um erro inesperado ocorreu durante o carregamento da tela inicial."
                 );
 
@@ -125,11 +98,12 @@ public class LoginScreenController {
                 showError("Erro ao entrar", "A senha está incorreta.");
             }
             else if (error instanceof SQLException) {
-                showError("Erro ao entrar", "Ocorreu um erro ao acessar banco de dados.");
+                showError("Erro ao entrar", "Ocorreu um erro ao acessar o banco de dados.");
                 error.printStackTrace();
             }
             else {
                 showError("Erro ao entrar", "Um erro inesperado ocorreu.");
+                erro.printStackTrace();
             }
 
             loginButton.setDisable(false);
@@ -153,43 +127,9 @@ public class LoginScreenController {
 
             Alert alert = new Alert(AlertType.ERROR);
             showError(
-                "Erro ao carregar próxima tela",
+                "Erro ao carregar a próxima tela",
                 "Um erro inesperado ocorreu durante o carregamento da tela de registro."
             );
-        }
-    }
-
-    private void validateEmailField() {
-        String email = emailField.getText();
-
-        if (email.isEmpty()) {
-            emailValidationLabel.setText("O campo de e-mail não pode estar vazio.");
-            emailValidationLabel.setStyle("-fx-text-fill: red;");
-        }
-        else if (!userService.validateEmail(email)) {
-            emailValidationLabel.setText("O e-mail não é válido.");
-            emailValidationLabel.setStyle("-fx-text-fill: red;");
-        }
-        else {
-            emailValidationLabel.setText("O email é válido.");
-            emailValidationLabel.setStyle("-fx-text-fill: green;");
-        }
-    }
-
-    private void validatePasswordField() {
-        String password = passwordField.getText();
-
-        if (password.isEmpty()) {
-            passwordValidationLabel.setText("O campo de senha não pode estar vazio.");
-            passwordValidationLabel.setStyle("-fx-text-fill: red;");
-        }
-        else if (!userService.validatePassword(password)) {
-            passwordValidationLabel.setText("A senha não é válida.");
-            passwordValidationLabel.setStyle("-fx-text-fill: red;");
-        }
-        else {
-            passwordValidationLabel.setText("A senha é válida.");
-            passwordValidationLabel.setStyle("-fx-text-fill: green;");
         }
     }
 

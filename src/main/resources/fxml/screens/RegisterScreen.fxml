@@ -52,6 +52,7 @@
                         prefWidth="200.0"
                         promptText="Digite o seu nome completo"
                     />
+                    <Label fx:id="nameValidationLabel" text=""/>
                     <Label
                         style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: black;"
                         text="E-mail"

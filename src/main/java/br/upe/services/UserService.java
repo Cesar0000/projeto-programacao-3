@@ -3,6 +3,7 @@ package br.upe.services;
 import br.upe.repositories.UserRepository;
 import br.upe.models.User;
 import br.upe.database.Database;
+import br.upe.exceptions.registration.EmailAlreadyRegisteredException;
 
 import java.util.Optional;
 import java.sql.Connection;
@@ -20,6 +21,13 @@ public class UserService {
             protected Void call() throws Exception {
                 try (Connection connection = Database.getConnection()) {
                     UserRepository userRepository = new UserRepository(connection);
+
+                    Optional<User> foundUser = userRepository.findByEmail(user.getEmail());
+
+                    if (!foundUser.isEmpty()) {
+                        throw new EmailAlreadyRegisteredException("O email já está registrado");
+                    }
+
                     userRepository.create(user);
                     return null;
                 }
