@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane
+    prefHeight="480.0"
+    prefWidth="800.0"
+    style="-fx-background-color: #EFEFEF; -fx-background-image: url('/images/Background.png'); -fx-background-size: cover;"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="br.upe.controllers.RegisterScreenController">
+    <children>
+        <StackPane
+            layoutX="250.0"
+            layoutY="90.0"
+            prefHeight="300.0" prefWidth="280.0">
+            <Rectangle
+                arcHeight="20.0"
+                arcWidth="20.0"
+                height="300.0"
+                style="-fx-fill: #FFFFFF;"
+                width="280.0"
+            />
+            <VBox
+                alignment="CENTER_LEFT"
+                prefHeight="318.0"
+                prefWidth="280.0"
+                spacing="10.0"
+                style="-fx-padding: 20;">
+                <Label
+                    style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #439121; -fx-alignment: center;"
+                    text="Cadastro" />
+                <VBox
+                    alignment="CENTER_LEFT"
+                    prefHeight="127.0"
+                    prefWidth="240.0"
+                    spacing="5.0"
+                    style="-fx-pref-width: 100%;">
+                    <Label
+                        style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: black;"
+                        text="Nome"
+                    />
+                    <TextField
+                        fx:id="nameField"
+                        prefWidth="200.0"
+                        promptText="Digite o seu nome completo"
+                    />
+                    <Label fx:id="nameValidationLabel" text=""/>
+                    <Label
+                        style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: black;"
+                        text="E-mail"
+                    />
+                    <TextField
+                        fx:id="emailField"
+                        prefWidth="200.0"
+                        promptText="Digite o seu e-mail"
+                    />
+                    <Label fx:id="emailValidationLabel" text=""/>
+                    <Label
+                        style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: black;"
+                        text="Senha"
+                    />
+                    <PasswordField
+                        fx:id="passwordField"
+                        prefWidth="200.0"
+                        promptText="Digite uma senha"
+                    />
+                    <Label fx:id="passwordValidationLabel" text=""/>
+                </VBox>
+                <Button
+                    fx:id="registerButton"
+                    prefHeight="25.0"
+                    prefWidth="296.0"
+                    style="-fx-background-color: #439121; -fx-text-fill: white; -fx-background-radius: 10;"
+                    text="Criar conta"
+                    onAction="#handleRegisterButtonClick"
+                />
+                <Button
+                    fx:id="loginButton"
+                    alignment="CENTER"
+                    contentDisplay="CENTER"
+                    prefHeight="25.0"
+                    prefWidth="360.0"
+                    style="-fx-background-color: #439121; -fx-text-fill: white; -fx-background-radius: 10;"
+                    text="Login"
+                    textAlignment="CENTER"
+                    onAction="#handleLoginButtonClick"
+                />
+            </VBox>
+        </StackPane>
+    </children>
+</AnchorPane>

@@ -84,19 +84,19 @@
 
         <resources>
             <resource>
-                <directory>${project.basedir}/src/packaging</directory>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+
+            <resource>
+                <directory>${project.basedir}/src/main/resources/github-release-resources/</directory>
+                <filtering>true</filtering>
+            </resource>
+
+            <resource>
+                <directory>${project.basedir}/src/main/resources/github-release-resources/packaging</directory>
                 <filtering>true</filtering>
                 <targetPath>${project.build.directory}/packaging</targetPath>
-            </resource>
-
-            <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-
-            <resource>
-                <directory>${project.basedir}/src/main/resources/build-info/</directory>
-                <filtering>true</filtering>
             </resource>
         </resources>
 

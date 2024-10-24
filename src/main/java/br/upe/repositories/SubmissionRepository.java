@@ -22,7 +22,7 @@ public class SubmissionRepository {
 
     public void create(Submission submission) throws SQLException {
         String query = """
-            INSERT INTO submission (event_id, user_id, article_name, created_at) VALUES (?, ?, ?, ?)
+            INSERT INTO submissions (event_id, user_id, article_name, created_at) VALUES (?, ?, ?, ?)
         """;
 
         // Validate fields
@@ -48,7 +48,7 @@ public class SubmissionRepository {
     public Optional<Submission> findById(long eventId, long userId) throws SQLException {
         String query = """
             SELECT *
-            FROM submission
+            FROM submissions
             WHERE event_id = ? AND user_id = ?
         """;
 
@@ -77,7 +77,7 @@ public class SubmissionRepository {
     public List<Submission> findAllSubmissionsForUserId(long userId) throws SQLException {
         String query = """
             SELECT *
-            FROM submission
+            FROM submissions
             WHERE user_id = ?
         """;
 
@@ -106,7 +106,7 @@ public class SubmissionRepository {
     public List<Submission> findAllSubmissionsForEventId(long eventId) throws SQLException {
         String query = """
             SELECT *
-            FROM submission
+            FROM submissions
             WHERE event_id = ?
         """;
 
@@ -134,7 +134,7 @@ public class SubmissionRepository {
 
     public void deleteById(long eventId, long userId) throws SQLException {
         String query = """
-            DELETE FROM submission WHERE event_id = ? AND user_id = ?
+            DELETE FROM submissions WHERE event_id = ? AND user_id = ?
         """;
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {

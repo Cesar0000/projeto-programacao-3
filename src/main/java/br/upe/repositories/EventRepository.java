@@ -22,7 +22,7 @@ public class EventRepository {
     public Optional<Event> findById(long id) throws SQLException {
         String query = """
             SELECT *
-            FROM event
+            FROM events
             WHERE id = ?
         """;
 
@@ -51,7 +51,7 @@ public class EventRepository {
     public List<Event> findAll() throws SQLException {
         String query = """
             SELECT *
-            FROM event
+            FROM events
         """;
 
         try (Statement statement = connection.createStatement()) {

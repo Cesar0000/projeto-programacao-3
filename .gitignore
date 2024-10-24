@@ -1,2 +1,6 @@
 # Ignore o diretório target/ criado pelo Apache Maven
 /target/
+
+/derby.log
+
+/prog3/
