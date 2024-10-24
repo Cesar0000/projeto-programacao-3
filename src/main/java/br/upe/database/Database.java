@@ -15,7 +15,7 @@ public class Database {
         return DriverManager.getConnection(connectionURL);
     }
 
-    public static void shutDown() throws SQLException {
+    public static void shutdown() throws SQLException {
         try {
             String shutdownURL = baseURL + ";shutdown=true";
             DriverManager.getConnection(shutdownURL);

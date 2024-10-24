@@ -78,19 +78,22 @@ public class LoginScreenController {
             return;
         }
 
-        loginButton.setDisable(true);
-        loginButton.setText("Entrando...");
-        registerButton.setDisable(true);
+        MessageDigest messageDigest;
 
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest = MessageDigest.getInstance("SHA-256");
         }
         catch (NoSuchAlgorithmException error) {
-            showErro("Erro ao entrar", "Ocorreu um erro inesperado durante o hashing the senha.");
+            showError("Erro ao entrar", "Ocorreu um erro inesperado durante o hashing the senha.");
             error.printStackTrace();
+            return;
         }
 
         byte[] passwordHash = messageDigest.digest(password.getBytes());
+
+        loginButton.setDisable(true);
+        loginButton.setText("Entrando...");
+        registerButton.setDisable(true);
 
         Task<Void> loginTask = authenticationService.getLoginTask(email, passwordHash);
 

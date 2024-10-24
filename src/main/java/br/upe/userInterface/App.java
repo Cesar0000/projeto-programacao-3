@@ -19,7 +19,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage mainStage) throws Exception {
-        Exception thrownException = null;
         ExecutorService threadPool = null;
         try {
             Database.initializeDatabase();
@@ -35,28 +34,32 @@ public class App extends Application {
             mainStage.show();
         }
         catch (Exception error) {
-            thrownException = error;
-        }
-        finally {
             if (threadPool != null) {
                 threadPool.shutdownNow();
             }
 
             try {
-                Database.shutDown();
+                Database.shutdown();
             }
-            catch (Exception error) {
-                if (thrownException != null) {
-                    thrownException.addSuppressed(error);
-                }
-                else {
-                    thrownException = error;
-                }
+            catch (Exception databaseShutdownError) {
+                error.addSuppressed(databaseShutdownError);
             }
 
-            if (thrownException != null) {
-                throw thrownException;
-            }
+            error.printStackTrace();
+
+            System.exit(1);
+        }
+    }
+
+    @Override
+    public void stop() {
+        AppContext.threadPool.shutdownNow();
+
+        try {
+            Database.shutdown();
+        }
+        catch (Exception error) {
+            error.printStackTrace();
         }
     }
 }
