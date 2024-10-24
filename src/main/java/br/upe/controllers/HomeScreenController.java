@@ -59,7 +59,7 @@ public class HomeScreenController {
     @FXML
     private void handleAccessEventsButtonClick() {
         try {
-            Parent eventScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/EventScreen.fxml"));
+            Parent eventScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/EventsScreen.fxml"));
             Stage mainStage = AppContext.mainStage;
             mainStage.getScene().setRoot(eventScreen);
         } catch (IOException e) {
