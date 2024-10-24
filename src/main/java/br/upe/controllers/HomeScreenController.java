@@ -1,7 +1,14 @@
 package br.upe.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import br.upe.userInterface.AppContext;
+
+import java.io.IOException;
 
 public class HomeScreenController {
     @FXML
@@ -24,12 +31,23 @@ public class HomeScreenController {
 
     @FXML
     private void initialize() {
-
+        accessProfileButton.setOnAction(event -> handleAccessProfileButtonClick());
+        exitButton.setOnAction(event -> handleExitButtonClick());
+        configurationButton.setOnAction(event -> handleConfigurationButtonClick());
+        accessEventsButton.setOnAction(event -> handleAccessEventsButtonClick());
+        accessSubscriptionsButton.setOnAction(event -> handleAccessSubscriptionsButtonClick());
+        accessSubmissionsButton.setOnAction(event -> handleAccessSubmissionsButtonClick());
     }
 
     @FXML
     private void handleExitButtonClick() {
-
+        try {
+            Parent loginScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/LoginScreen.fxml"));
+            Stage mainStage = AppContext.mainStage;
+            mainStage.getScene().setRoot(loginScreen);
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
     }
 
     @FXML
@@ -39,7 +57,19 @@ public class HomeScreenController {
 
     @FXML
     private void handleAccessEventsButtonClick() {
+        try {
+            Parent eventScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/EventScreen.fxml"));
+            Stage mainStage = AppContext.mainStage;
+            mainStage.getScene().setRoot(eventScreen);
+        } catch (IOException e) {
+            e.printStackTrace();
 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro ao carregar a tela de eventos");
+            alert.setHeaderText(null);
+            alert.setContentText("Ocorreu um erro ao tentar carregar a tela de eventos.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -54,6 +84,6 @@ public class HomeScreenController {
 
     @FXML
     private void handleAccessProfileButtonClick() {
-        
+
     }
 }
