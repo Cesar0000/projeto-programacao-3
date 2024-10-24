@@ -2,8 +2,16 @@ package br.upe.controllers;
 
 import br.upe.userInterface.AppContext;
 import br.upe.services.UserService;
+import br.upe.services.AuthenticationService;
+import br.upe.userInterface.AppContext;
+import br.upe.exceptions.authentication.EmailNotRegisteredException;
+import br.upe.exceptions.authentication.IncorrectPasswordException;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
@@ -13,9 +21,13 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
+import javafx.concurrent.Task;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class LoginScreenController {
     private UserService userService = new UserService();
+    private AuthenticationService authenticationService = new AuthenticationService();
 
     @FXML
     private TextField emailField;
@@ -36,9 +48,13 @@ public class LoginScreenController {
     private Button registerButton;
 
     @FXML
-    public void initialize() {
-        emailField.setOnAction(e -> validateEmailField());
-        passwordField.setOnAction(e -> validatePasswordField());
+    private void initialize() {
+        emailField.setOnAction(e -> {
+            validateEmailField();
+        });
+        passwordField.setOnAction(e -> {
+            validatePasswordField();
+        });
 
         emailField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
@@ -54,18 +70,90 @@ public class LoginScreenController {
 
     @FXML
     private void handleLoginButtonClick() {
-        // PEGAR O INPUT DO USUÁRIO E VALIDAR
-        // DESABILITAR BOTÕES
-        // CRIAR TASK E PASSAR PRA THREADPOOL
-        // SETAR OS EVENT HANDLERS DA TASK
-        // QUANDO APERTAR PARA LOGAR VERFICAR NOVAMENTE OS CAMPOS E SE TIVER ALGUM CAMPO VAZIO OU COM OUTRO PROBLEMA AVISAR
+        String email = emailField.getText();
+        String password = passwordField.getText();
+
+        if (!(userService.validateEmail(email) && userService.validatePassword(password))) {
+            showError("Erro ao entrar", "Os dados estão inválidos.");
+            return;
+        }
+
+        loginButton.setDisable(true);
+        loginButton.setText("Entrando...");
+        registerButton.setDisable(true);
+
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+        }
+        catch (NoSuchAlgorithmException error) {
+            showErro("Erro ao entrar", "Ocorreu um erro inesperado durante o hashing the senha.");
+            error.printStackTrace();
+        }
+
+        byte[] passwordHash = messageDigest.digest(password.getBytes());
+
+        Task<Void> loginTask = authenticationService.getLoginTask(email, passwordHash);
+
+        loginTask.setOnSucceeded(e -> {
+            try {
+                Parent homeScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/HomeScreen.fxml"));
+                Stage mainStage = AppContext.mainStage;
+                mainStage.getScene().setRoot(homeScreen);
+            }
+            catch (IOException error) {
+                authenticationService.logout();
+                showError(
+                    "Erro ao carregar próxima tela",
+                    "Um erro inesperado ocorreu durante o carregamento da tela inicial."
+                );
+
+                loginButton.setDisable(false);
+                loginButton.setText("Entrar");
+                registerButton.setDisable(false);
+            }
+        });
+
+        loginTask.setOnFailed(e -> {
+            Throwable error = loginTask.getException();
+            if (error instanceof EmailNotRegisteredException) {
+                showError("Erro ao entrar", "O e-mail não está registrado.");
+            }
+            else if (error instanceof IncorrectPasswordException) {
+                showError("Erro ao entrar", "A senha está incorreta.");
+            }
+            else if (error instanceof SQLException) {
+                showError("Erro ao entrar", "Ocorreu um erro ao acessar banco de dados.");
+                error.printStackTrace();
+            }
+            else {
+                showError("Erro ao entrar", "Um erro inesperado ocorreu.");
+            }
+
+            loginButton.setDisable(false);
+            loginButton.setText("Entrar");
+            registerButton.setDisable(false);
+        });
+
+        ExecutorService threadPool = AppContext.threadPool;
+        threadPool.submit(loginTask);
     }
 
     @FXML
-    private void handleRegisterButtonClick() throws IOException {
-        Parent registerScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/RegisterScreen.fxml"));
-        Stage mainStage = AppContext.mainStage;
-        mainStage.getScene().setRoot(registerScreen);
+    private void handleRegisterButtonClick() {
+        try {
+            Parent registerScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/RegisterScreen.fxml"));
+            Stage mainStage = AppContext.mainStage;
+            mainStage.getScene().setRoot(registerScreen);
+        }
+        catch (IOException error) {
+            error.printStackTrace();
+
+            Alert alert = new Alert(AlertType.ERROR);
+            showError(
+                "Erro ao carregar próxima tela",
+                "Um erro inesperado ocorreu durante o carregamento da tela de registro."
+            );
+        }
     }
 
     private void validateEmailField() {
@@ -100,5 +188,13 @@ public class LoginScreenController {
             passwordValidationLabel.setText("A senha é válida.");
             passwordValidationLabel.setStyle("-fx-text-fill: green;");
         }
+    }
+
+    private void showError(String title, String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

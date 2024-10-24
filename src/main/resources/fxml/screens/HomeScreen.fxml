@@ -55,18 +55,22 @@
                         </ImageView>
                         <!-- Botão de sair -->
                         <Button
+                            fx:id="exitButton"
                             layoutX="693.0"
                             layoutY="18.0"
                             style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;"
                             text="Sair"
+                            onAction="#handleExitButtonClick"
                         />
                         <!-- Botão de configuração com ícone -->
                         <Button
+                            fx:id="configurationButton"
                             layoutX="740.0"
                             layoutY="12.0"
                             prefHeight="35.0"
                             prefWidth="41.0"
-                            style="-fx-background-color: transparent;">
+                            style="-fx-background-color: transparent;"
+                            onAction="#handleConfigurationButtonClick">
                             <graphic>
                                 <ImageView
                                     fitHeight="44.0"
@@ -117,26 +121,116 @@
                 vgap="40">
                 <children>
                     <!-- Primeira linha -->
-                    <VBox alignment="CENTER" prefHeight="121.0" prefWidth="210.0" spacing="10.0" style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <Label style="-fx-font-size: 20px; -fx-wrap-text: true;" text="Eventos" />
-                        <Label prefHeight="75.0" prefWidth="165.0" style="-fx-font-size: 16px; -fx-wrap-text: true;" text="Veja a lista de eventos disponíveis" textAlignment="CENTER" />
-                        <Button prefHeight="30.0" prefWidth="193.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;" text="Eventos" />
+                    <VBox
+                        alignment="CENTER"
+                        prefHeight="121.0"
+                        prefWidth="210.0"
+                        spacing="10.0"
+                        style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="0">
+                        <Label
+                            style="-fx-font-size: 20px; -fx-wrap-text: true;"
+                            text="Eventos"
+                        />
+                        <Label
+                            prefHeight="75.0"
+                            prefWidth="165.0"
+                            style="-fx-font-size: 16px; -fx-wrap-text: true;"
+                            text="Veja a lista de eventos disponíveis"
+                            textAlignment="CENTER"
+                        />
+                        <Button
+                            fx:id="accessEventsButton"
+                            prefHeight="30.0"
+                            prefWidth="193.0"
+                            style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;"
+                            text="Acessar"
+                            onAction="#handleAccessEventsButtonClick"
+                        />
                     </VBox>
-                    <VBox alignment="CENTER" prefHeight="154.0" prefWidth="193.0" spacing="10.0" style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;" GridPane.columnIndex="1">
-                        <Label style="-fx-font-size: 20px; -fx-wrap-text: true;" text="Sessões" />
-                        <Label prefHeight="75.0" prefWidth="165.0" style="-fx-font-size: 16px; -fx-wrap-text: true;" text="Veja a lista de Sessões disponíveis " textAlignment="CENTER" />
-                        <Button prefHeight="30.0" prefWidth="207.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;" text="Sessões" />
+                    <VBox
+                        alignment="CENTER"
+                        prefHeight="154.0"
+                        prefWidth="193.0"
+                        spacing="10.0"
+                        style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;"
+                        GridPane.columnIndex="1">
+                        <Label
+                            style="-fx-font-size: 20px; -fx-wrap-text: true;"
+                            text="Inscrições"
+                        />
+                        <Label
+                            prefHeight="75.0"
+                            prefWidth="165.0"
+                            style="-fx-font-size: 16px; -fx-wrap-text: true;"
+                            text="Veja as suas inscrições"
+                            textAlignment="CENTER"
+                        />
+                        <Button
+                            fx:id="accessSubscriptionsButton"
+                            prefHeight="30.0"
+                            prefWidth="207.0"
+                            style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;"
+                            text="Acessar"
+                            onAction="#handleAccessSubscriptionsButtonClick"
+                        />
                     </VBox>
                     <!-- Segunda linha -->
-                    <VBox alignment="CENTER" prefHeight="148.0" prefWidth="208.0" spacing="10.0" style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <Label style="-fx-font-size: 20px; -fx-wrap-text: true;" text="Perfil" />
-                        <Label prefHeight="81.0" prefWidth="204.0" style="-fx-font-size: 16px; -fx-wrap-text: true;" text="Acessar configurações do seu perfil para alterar suas informações pessoais" />
-                        <Button prefHeight="30.0" prefWidth="191.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;" text="Meu Perfil" />
+                    <VBox
+                        alignment="CENTER"
+                        prefHeight="148.0"
+                        prefWidth="208.0"
+                        spacing="10.0"
+                        style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="1">
+                        <Label
+                            style="-fx-font-size: 20px; -fx-wrap-text: true;"
+                            text="Submissões"
+                        />
+                        <Label
+                            prefHeight="81.0"
+                            prefWidth="204.0"
+                            style="-fx-font-size: 16px; -fx-wrap-text: true;"
+                            text="Veja as suas submissões"
+                        />
+                        <Button
+                            fx:id="accessSubmissionsButton"
+                            prefHeight="30.0"
+                            prefWidth="191.0"
+                            style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;"
+                            text="Acessar"
+                            onAction="#handleAccessSubmissionsButtonClick"
+                        />
                     </VBox>
-                    <VBox alignment="CENTER" prefHeight="148.0" prefWidth="196.0" spacing="10.0" style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <Label style="-fx-font-size: 20px; -fx-wrap-text: true;" text="Inscrições" />
-                        <Label prefHeight="46.0" prefWidth="213.0" style="-fx-font-size: 16px; -fx-wrap-text: true;" text="Veja sua lista de inscrições" textAlignment="JUSTIFY" />
-                        <Button prefHeight="30.0" prefWidth="216.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;" text="Inscrições" />
+                    <VBox
+                        alignment="CENTER"
+                        prefHeight="148.0"
+                        prefWidth="196.0"
+                        spacing="10.0"
+                        style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="1">
+                        <Label
+                            style="-fx-font-size: 20px; -fx-wrap-text: true;"
+                            text="Perfil"
+                        />
+                        <Label
+                            prefHeight="46.0"
+                            prefWidth="213.0"
+                            style="-fx-font-size: 16px; -fx-wrap-text: true;"
+                            text="Veja o seu perfil."
+                            textAlignment="JUSTIFY"
+                        />
+                        <Button
+                            fx:id="accessProfileButton"
+                            prefHeight="30.0"
+                            prefWidth="216.0"
+                            style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;"
+                            text="Acessar"
+                            onAction="#handleAccessProfileButtonClick"
+                        />
                     </VBox>
                 </children>
                 <columnConstraints>
