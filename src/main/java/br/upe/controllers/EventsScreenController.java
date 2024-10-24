@@ -3,6 +3,7 @@ package br.upe.controllers;
 import br.upe.models.Event;
 import br.upe.services.EventService;
 import br.upe.userinterface.AppContext;
+import br.upe.controllers.EventsListItemController;
 
 import java.io.IOException;
 import java.util.List;
@@ -100,7 +101,7 @@ public class EventsScreenController {
                                 HBox eventBox = loader.load();
 
                                 // Obtém o controlador da célula
-                                EventListItemController itemController = loader.getController();
+                                EventsListItemController itemController = loader.getController();
 
                                 // Define os dados do evento no controlador
                                 itemController.setEventData(event);
