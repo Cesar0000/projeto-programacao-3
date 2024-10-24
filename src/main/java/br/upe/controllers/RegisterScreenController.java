@@ -1,6 +1,6 @@
 package br.upe.controllers;
 
-import br.upe.userInterface.AppContext;
+import br.upe.userinterface.AppContext;
 import br.upe.services.UserService;
 import br.upe.models.User;
 import br.upe.exceptions.registration.EmailAlreadyRegisteredException;
@@ -53,28 +53,22 @@ public class RegisterScreenController {
 
     @FXML
     private void initialize() {
-        nameField.setOnAction(e -> {
-            validateNameField();
-        });
-        emailField.setOnAction(e -> {
-            validateEmailField();
-        });
-        passwordField.setOnAction(e -> {
-            validatePasswordField();
-        });
+        nameField.setOnAction(e -> validateNameField());
+        emailField.setOnAction(e -> validateEmailField());
+        passwordField.setOnAction(e -> validatePasswordField());
 
         nameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
+            if (Boolean.FALSE.equals(newValue)) {
                 validateNameField();
             }
         });
         emailField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
+            if (Boolean.FALSE.equals(newValue)) {
                 validateEmailField();
             }
         });
         passwordField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
+            if (Boolean.FALSE.equals(newValue)) {
                 validatePasswordField();
             }
         });
@@ -177,7 +171,6 @@ public class RegisterScreenController {
         catch (IOException error) {
             error.printStackTrace();
 
-            Alert alert = new Alert(AlertType.ERROR);
             showError(
                 "Erro ao carregar próxima tela",
                 "Um erro inesperado ocorreu durante o carregamento da tela de login."

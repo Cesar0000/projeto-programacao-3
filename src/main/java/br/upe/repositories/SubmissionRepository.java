@@ -47,7 +47,7 @@ public class SubmissionRepository {
 
     public Optional<Submission> findById(long eventId, long userId) throws SQLException {
         String query = """
-            SELECT *
+            SELECT user_id, event_id, article_name, created_at
             FROM submissions
             WHERE event_id = ? AND user_id = ?
         """;
@@ -59,7 +59,7 @@ public class SubmissionRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the submission was not found return an empty Optional
-            if (resultSet.next() == false) {
+            if (resultSet.next()) {
                 return Optional.empty();
             }
 
@@ -76,7 +76,7 @@ public class SubmissionRepository {
 
     public List<Submission> findAllSubmissionsForUserId(long userId) throws SQLException {
         String query = """
-            SELECT *
+            SELECT user_id, event_id, article_name, created_at
             FROM submissions
             WHERE user_id = ?
         """;
@@ -86,10 +86,10 @@ public class SubmissionRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Submission> submissions = new ArrayList();
+            List<Submission> submissions = new ArrayList<>();
 
             // Fill the list with all the submissions
-            while (resultSet.next() != false) {
+            while (resultSet.next()) {
                 Submission submission = new Submission();
                 submission.setEventId(resultSet.getLong("event_id"));
                 submission.setUserId(resultSet.getLong("user_id"));
@@ -105,7 +105,7 @@ public class SubmissionRepository {
 
     public List<Submission> findAllSubmissionsForEventId(long eventId) throws SQLException {
         String query = """
-            SELECT *
+            SELECT user_id, event_id, article_name, created_at
             FROM submissions
             WHERE event_id = ?
         """;
@@ -115,10 +115,10 @@ public class SubmissionRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Submission> submissions = new ArrayList();
+            List<Submission> submissions = new ArrayList<>();
 
             // Fill the list with all the submissions
-            while (resultSet.next() != false) {
+            while (resultSet.next()) {
                 Submission submission = new Submission();
                 submission.setEventId(resultSet.getLong("event_id"));
                 submission.setUserId(resultSet.getLong("user_id"));

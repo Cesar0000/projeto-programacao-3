@@ -8,16 +8,18 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 
 public class Database {
-    private static final String baseURL = "jdbc:derby:prog3";
-    private static final String connectionURL = "jdbc:derby:prog3";
+    private static final String BASEURL = "jdbc:derby:prog3";
+    private static final String CONNECTIONURL = "jdbc:derby:prog3";
+
+    private Database() {}
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(connectionURL);
+        return DriverManager.getConnection(CONNECTIONURL);
     }
 
     public static void shutdown() throws SQLException {
         try {
-            String shutdownURL = baseURL + ";shutdown=true";
+            String shutdownURL = BASEURL + ";shutdown=true";
             DriverManager.getConnection(shutdownURL);
         } catch (SQLException error) {
             if (!error.getSQLState().equals("08006")) {
@@ -27,7 +29,7 @@ public class Database {
     }
 
     public static void initializeDatabase() throws SQLException {
-        String createURL = baseURL + ";create=true";
+        String createURL = BASEURL + ";create=true";
         Connection connection = DriverManager.getConnection(createURL);
 
         try (connection) {

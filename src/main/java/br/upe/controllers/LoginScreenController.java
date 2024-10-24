@@ -1,9 +1,8 @@
 package br.upe.controllers;
 
-import br.upe.userInterface.AppContext;
+import br.upe.userinterface.AppContext;
 import br.upe.services.UserService;
 import br.upe.services.AuthenticationService;
-import br.upe.userInterface.AppContext;
 import br.upe.exceptions.authentication.EmailNotRegisteredException;
 import br.upe.exceptions.authentication.IncorrectPasswordException;
 
@@ -21,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Label;
 import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -127,7 +125,6 @@ public class LoginScreenController {
         catch (IOException error) {
             error.printStackTrace();
 
-            Alert alert = new Alert(AlertType.ERROR);
             showError(
                 "Erro ao carregar a próxima tela",
                 "Um erro inesperado ocorreu durante o carregamento da tela de registro."

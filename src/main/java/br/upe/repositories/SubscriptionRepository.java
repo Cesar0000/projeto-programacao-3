@@ -47,7 +47,7 @@ public class SubscriptionRepository {
 
     public Optional<Subscription> findById(long userId, long eventId, long sessionNumber) throws SQLException {
         String query = """
-            SELECT *
+            SELECT user_id, event_id, session_number, created_at
             FROM subscriptions
             WHERE user_id = ? AND event_id = ? AND session_number = ?
         """;
@@ -60,7 +60,7 @@ public class SubscriptionRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the subscription was not found return an empty Optional
-            if (resultSet.next() == false) {
+            if (resultSet.next()) {
                 return Optional.empty();
             }
 
@@ -77,7 +77,7 @@ public class SubscriptionRepository {
 
     public List<Subscription> findAllSubscriptionsForUserId(long userId) throws SQLException {
         String query = """
-            SELECT *
+            SELECT user_id, event_id, session_number, created_at
             FROM subscriptions
             WHERE user_id = ?
         """;
@@ -90,7 +90,7 @@ public class SubscriptionRepository {
             List<Subscription> subscriptions = new ArrayList();
 
             // Fill the list with all the subscriptions
-            while (resultSet.next() != false) {
+            while (resultSet.next()) {
                 Subscription subscription = new Subscription();
                 subscription.setUserId(resultSet.getLong("user_id"));
                 subscription.setEventId(resultSet.getLong("event_id"));
@@ -106,7 +106,7 @@ public class SubscriptionRepository {
 
     public List<Subscription> findAllSubscriptionsForSessionId(long eventId, long sessionNumber) throws SQLException {
         String query = """
-            SELECT *
+            SELECT user_id, event_id, session_number, created_at
             FROM subscriptions
             WHERE event_id = ? AND session_number = ?
         """;
@@ -120,7 +120,7 @@ public class SubscriptionRepository {
             List<Subscription> subscriptions = new ArrayList();
 
             // Fill the list with all the subscriptions
-            while (resultSet.next() != false) {
+            while (resultSet.next()) {
                 Subscription subscription = new Subscription();
                 subscription.setUserId(resultSet.getLong("user_id"));
                 subscription.setEventId(resultSet.getLong("event_id"));

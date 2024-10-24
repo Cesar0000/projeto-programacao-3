@@ -1,14 +1,15 @@
 package br.upe.controllers;
 
+import br.upe.userinterface.AppContext;
+
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import br.upe.userInterface.AppContext;
-
-import java.io.IOException;
 
 public class HomeScreenController {
     @FXML
@@ -58,7 +59,7 @@ public class HomeScreenController {
     @FXML
     private void handleAccessEventsButtonClick() {
         try {
-            Parent eventScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/EventScreen.fxml"));
+            Parent eventScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/EventsScreen.fxml"));
             Stage mainStage = AppContext.mainStage;
             mainStage.getScene().setRoot(eventScreen);
         } catch (IOException e) {
