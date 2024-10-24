@@ -59,7 +59,7 @@ public class SubmissionRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the submission was not found return an empty Optional
-            if (resultSet.next()) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 

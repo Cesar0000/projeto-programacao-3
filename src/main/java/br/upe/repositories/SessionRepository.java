@@ -33,7 +33,7 @@ public class SessionRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the session was not found return an empty Optional
-            if (resultSet.next()) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 

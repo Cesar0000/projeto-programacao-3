@@ -32,7 +32,7 @@ public class EventRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the event was not found return an empty Optional
-            if (resultSet.next()) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 

@@ -105,7 +105,7 @@ public class UserRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the user was not found return an empty Optional
-            if (resultSet.next()) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 
@@ -133,7 +133,7 @@ public class UserRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the user was not found return an empty Optional
-            if (resultSet.next()) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 

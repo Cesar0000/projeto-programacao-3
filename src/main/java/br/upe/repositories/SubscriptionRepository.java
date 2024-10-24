@@ -60,7 +60,7 @@ public class SubscriptionRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the subscription was not found return an empty Optional
-            if (resultSet.next()) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 
