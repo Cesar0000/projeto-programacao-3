@@ -11,16 +11,13 @@ import javafx.concurrent.Task;
 
 public class SessionService {
 
-    public SessionService() {}
-
     public Task<List<Session>> getFindAllSessionsForEventTask(long eventId) {
         return new Task<List<Session>>() {
             @Override
             protected List<Session> call() throws Exception {
                 try (Connection connection = Database.getConnection()) {
                     SessionRepository sessionRepository = new SessionRepository(connection);
-                    List<Session> eventSessions = sessionRepository.findAllSessionsForEventId(eventId);
-                    return eventSessions;
+                    return sessionRepository.findAllSessionsForEventId(eventId);
                 }
             }
         };

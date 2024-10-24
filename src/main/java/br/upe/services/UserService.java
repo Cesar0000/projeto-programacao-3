@@ -7,13 +7,10 @@ import br.upe.exceptions.registration.EmailAlreadyRegisteredException;
 
 import java.util.Optional;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import javafx.concurrent.Task;
 
 public class UserService {
-
-    public UserService() {}
 
     public Task<Void> getRegisterUserTask(User user) {
         return new Task<Void>() {

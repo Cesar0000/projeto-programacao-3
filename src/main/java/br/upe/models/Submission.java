@@ -8,8 +8,6 @@ public class Submission {
     private String articleName;
     private Instant createdAt;
 
-    public Submission() {}
-
     public Long getEventId() {
         return eventId;
     }

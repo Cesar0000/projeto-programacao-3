@@ -8,8 +8,6 @@ public class Subscription {
     private Long sessionNumber;
     private Instant createdAt;
 
-    public Subscription() {}
-
     public Long getUserId() {
         return userId;
     }

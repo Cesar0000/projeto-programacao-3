@@ -1,14 +1,15 @@
 package br.upe.controllers;
 
+import br.upe.userinterface.AppContext;
+
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import br.upe.userInterface.AppContext;
-
-import java.io.IOException;
 
 public class HomeScreenController {
     @FXML

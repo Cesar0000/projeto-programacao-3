@@ -15,8 +15,6 @@ import javafx.concurrent.Task;
 public class AuthenticationService {
     private static User loggedUser;
 
-    public AuthenticationService() {}
-
     public Task<Void> getLoginTask(String email, byte[] password) {
         return new Task<Void> () {
             @Override

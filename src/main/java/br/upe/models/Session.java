@@ -11,8 +11,6 @@ public class Session {
     private LocalTime startTime;
     private LocalTime endTime;
 
-    public Session() {}
-
     public Long getEventId() {
         return eventId;
     }

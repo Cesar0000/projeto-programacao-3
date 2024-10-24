@@ -1,6 +1,5 @@
-package br.upe.userInterface;
+package br.upe.userinterface;
 
-import br.upe.userInterface.AppContext;
 import br.upe.database.Database;
 
 import javafx.application.Application;
