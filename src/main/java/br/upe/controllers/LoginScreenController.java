@@ -8,6 +8,7 @@ import br.upe.exceptions.authentication.EmailNotRegisteredException;
 import br.upe.exceptions.authentication.IncorrectPasswordException;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -62,7 +63,7 @@ public class LoginScreenController {
             return;
         }
 
-        byte[] passwordHash = messageDigest.digest(password.getBytes());
+        byte[] passwordHash = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
 
         loginButton.setDisable(true);
         loginButton.setText("Entrando...");
@@ -77,6 +78,7 @@ public class LoginScreenController {
                 mainStage.getScene().setRoot(homeScreen);
             }
             catch (IOException error) {
+                error.printStackTrace();
                 authenticationService.logout();
                 showError(
                     "Erro ao carregar a próxima tela",
@@ -103,7 +105,7 @@ public class LoginScreenController {
             }
             else {
                 showError("Erro ao entrar", "Um erro inesperado ocorreu.");
-                erro.printStackTrace();
+                error.printStackTrace();
             }
 
             loginButton.setDisable(false);

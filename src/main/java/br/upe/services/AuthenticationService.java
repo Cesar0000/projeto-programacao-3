@@ -8,6 +8,7 @@ import br.upe.exceptions.authentication.IncorrectPasswordException;
 
 import java.sql.Connection;
 import java.util.Optional;
+import java.util.Arrays;
 
 import javafx.concurrent.Task;
 
@@ -22,13 +23,13 @@ public class AuthenticationService {
             protected Void call() throws Exception {
                 try (Connection connection = Database.getConnection()) {
                     UserRepository userRepository = new UserRepository(connection);
-                    Optional<User> user = userRepository.findByEmail(email);
-                    if (user.isEmpty()) {
+                    Optional<User> foundUser = userRepository.findByEmail(email);
+                    if (foundUser.isEmpty()) {
                         throw new EmailNotRegisteredException("The email is not registered");
                     }
-                    byte[] foundUserPassword = user.get().getPassword();
-                    if (foundUserPassword.equals(password)) {
-                        loggedUser = user.get();
+                    byte[] foundUserPassword = foundUser.get().getPassword();
+                    if (Arrays.equals(foundUserPassword, password)) {
+                        loggedUser = foundUser.get();
                         return null;
                     }
                     else {

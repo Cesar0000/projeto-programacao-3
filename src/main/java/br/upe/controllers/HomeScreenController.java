@@ -38,7 +38,7 @@ public class HomeScreenController {
     }
 
     @FXML
-    private void handleAccessEventsButtonclick() {
+    private void handleAccessEventsButtonClick() {
 
     }
 

@@ -10,6 +10,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.concurrent.ExecutorService;
+import java.nio.charset.StandardCharsets;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,9 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
-import main.java.br.upe.exceptions.authentication.EmailNotRegisteredException;
-import main.java.br.upe.exceptions.authentication.IncorrectPasswordException;
-import main.java.br.upe.exceptions.registration.EmailAlreadyRegisteredException;
+import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -88,7 +87,7 @@ public class RegisterScreenController {
         String password = passwordField.getText();
 
         if (
-            !name.isEmpty()
+            name.isEmpty()
             || !userService.validateEmail(email)
             || !userService.validatePassword(password)
         ) {
@@ -107,7 +106,7 @@ public class RegisterScreenController {
             return;
         }
 
-        byte[] passwordHash = messageDigest.digest(password.getBytes());
+        byte[] passwordHash = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
 
         registerButton.setDisable(true);
         registerButton.setText("Criando conta...");
