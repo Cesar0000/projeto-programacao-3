@@ -87,7 +87,7 @@ public class SubscriptionRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Subscription> subscriptions = new ArrayList();
+            List<Subscription> subscriptions = new ArrayList<>();
 
             // Fill the list with all the subscriptions
             while (resultSet.next()) {
@@ -117,7 +117,7 @@ public class SubscriptionRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Subscription> subscriptions = new ArrayList();
+            List<Subscription> subscriptions = new ArrayList<>();
 
             // Fill the list with all the subscriptions
             while (resultSet.next()) {

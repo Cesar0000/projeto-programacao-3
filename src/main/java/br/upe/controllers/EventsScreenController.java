@@ -125,9 +125,7 @@ public class EventsScreenController {
                     listItemController.setEventDetails(event);
                     listItemController.setButtonHandle(e -> loadEventDetailsScreen(event));
 
-                    Platform.runLater(() -> {
-                        eventsListView.getItems().add(listItem);
-                    });
+                    Platform.runLater(() -> eventsListView.getItems().add(listItem));
                 }
                 return null;
             }
