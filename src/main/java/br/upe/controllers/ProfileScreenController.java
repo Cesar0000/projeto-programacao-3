@@ -47,24 +47,24 @@ public class ProfileScreenController {
 
     @FXML
     private void handleChangePasswordButtonClick() {
-        currentPasswordLabel.setVisible(true);
-        currentPasswordField.setVisible(true);
-        newPasswordLabel.setVisible(true);
-        newPasswordField.setVisible(true);
-        confirmButton.setVisible(true);
+        // currentPasswordLabel.setVisible(true);
+        // currentPasswordField.setVisible(true);
+        // newPasswordLabel.setVisible(true);
+        // newPasswordField.setVisible(true);
+        // confirmButton.setVisible(true);
     }
 
     @FXML
     private void handleConfirmPasswordChangeButtonClick() {
-        String currentPassword = currentPasswordField.getText();
-        String newPassword = newPasswordField.getText();
+        // String currentPassword = currentPasswordField.getText();
+        // String newPassword = newPasswordField.getText();
 
-        if (validatePassword(currentPassword, newPassword)) {
-            //
-            showAlert("Senha alterada com sucesso!", AlertType.INFORMATION);
-        } else {
-            showAlert("Falha ao alterar a senha. Verifique os campos!", AlertType.ERROR);
-        }
+        // if (validatePassword(currentPassword, newPassword)) {
+        //     //
+        //     showAlert("Senha alterada com sucesso!", AlertType.INFORMATION);
+        // } else {
+        //     showAlert("Falha ao alterar a senha. Verifique os campos!", AlertType.ERROR);
+        // }
     }
 
     @FXML
