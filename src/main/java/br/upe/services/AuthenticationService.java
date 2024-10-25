@@ -16,7 +16,7 @@ public class AuthenticationService {
     private static User loggedUser;
 
     public Task<Void> getLoginTask(String email, byte[] password) {
-        return new Task<Void> () {
+        return new Task<Void>() {
             @Override
             protected Void call() throws Exception {
                 try (Connection connection = Database.getConnection()) {
@@ -29,8 +29,7 @@ public class AuthenticationService {
                     if (Arrays.equals(foundUserPassword, password)) {
                         loggedUser = foundUser.get();
                         return null;
-                    }
-                    else {
+                    } else {
                         throw new IncorrectPasswordException("The password is incorrect");
                     }
                 }
@@ -44,5 +43,14 @@ public class AuthenticationService {
 
     public User getLoggedUser() {
         return loggedUser;
+    }
+
+    // Métodos para obter o nome e e-mail do usuário logado
+    public String getCurrentUserName() {
+        return loggedUser != null ? loggedUser.getName() : null;
+    }
+
+    public String getCurrentUserEmail() {
+        return loggedUser != null ? loggedUser.getEmail() : null;
     }
 }
