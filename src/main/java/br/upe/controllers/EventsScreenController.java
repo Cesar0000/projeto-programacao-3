@@ -3,8 +3,6 @@ package br.upe.controllers;
 import br.upe.models.Event;
 import br.upe.userinterface.AppContext;
 import br.upe.services.EventService;
-import br.upe.controllers.EventsListItemController;
-import br.upe.controllers.EventDetailsScreenController;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,7 +14,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.concurrent.Task;
-import javafx.scene.Node;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
@@ -136,9 +133,7 @@ public class EventsScreenController {
             }
         };
 
-        renderEventsTask.setOnSucceeded(e -> {
-            refreshButton.setDisable(false);
-        });
+        renderEventsTask.setOnSucceeded(e -> refreshButton.setDisable(false));
 
         renderEventsTask.setOnFailed(e -> {
             Throwable error = renderEventsTask.getException();
