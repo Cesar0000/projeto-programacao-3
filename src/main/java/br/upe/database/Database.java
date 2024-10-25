@@ -6,15 +6,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.io.File;
 
 public class Database {
-    private static final String BASEURL = "jdbc:derby:prog3";
-    private static final String CONNECTIONURL = "jdbc:derby:prog3";
+    private static final String BASEURL;
+
+    static {
+        String userHomeDirectory = System.getProperty("user.home");
+        userHomeDirectory = userHomeDirectory.replace(File.separator, "/");
+        String databaseDirectory = userHomeDirectory + "/nexus/prog3";
+        BASEURL = "jdbc:derby:" + databaseDirectory;
+    }
 
     private Database() {}
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(CONNECTIONURL);
+        String connectionURL = BASEURL;
+        return DriverManager.getConnection(connectionURL);
     }
 
     public static void shutdown() throws SQLException {

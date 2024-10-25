@@ -12,53 +12,53 @@
 <?import javafx.scene.layout.Pane?>
 
 <AnchorPane
-        maxHeight="Infinity"
-        maxWidth="Infinity"
-        minHeight="520.0"
-        minWidth="920.0"
-        prefHeight="520.0"
-        prefWidth="920.0"
-        xmlns="http://javafx.com/javafx/21"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="br.upe.controllers.EventsScreenController">
+    maxHeight="Infinity"
+    maxWidth="Infinity"
+    minHeight="520.0"
+    minWidth="920.0"
+    prefHeight="520.0"
+    prefWidth="920.0"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="br.upe.controllers.EventsScreenController">
 
     <!-- Barra superior com botão de voltar e logo -->
     <HBox
-            alignment="CENTER_LEFT"
-            prefHeight="60.0"
-            prefWidth="920.0"
-            style="-fx-background-color: #292929;"
-            AnchorPane.topAnchor="0.0"
-            AnchorPane.leftAnchor="0.0"
-            AnchorPane.rightAnchor="0.0">
+        alignment="CENTER_LEFT"
+        prefHeight="60.0"
+        prefWidth="920.0"
+        style="-fx-background-color: #292929;"
+        AnchorPane.topAnchor="0.0"
+        AnchorPane.leftAnchor="0.0"
+        AnchorPane.rightAnchor="0.0">
         <Pane prefHeight="60.0" prefWidth="920.0">
             <children>
                 <Button
-                        fx:id="returnButton"
-                        layoutX="14.0"
-                        layoutY="12.0"
-                        onAction="#handleReturnButtonClick"
-                        prefHeight="35.0"
-                        prefWidth="41.0"
-                        style="-fx-background-color: transparent;"/>
+                    fx:id="returnButton"
+                    layoutX="14.0"
+                    layoutY="12.0"
+                    onAction="#handleReturnButtonClick"
+                    prefHeight="35.0"
+                    prefWidth="41.0"
+                    style="-fx-background-color: transparent;"/>
                 <ImageView
-                        fitHeight="40.0"
-                        fitWidth="66.0"
-                        layoutX="830.0"
-                        layoutY="10.0"
-                        pickOnBounds="true"
-                        preserveRatio="true">
+                    fitHeight="40.0"
+                    fitWidth="66.0"
+                    layoutX="830.0"
+                    layoutY="10.0"
+                    pickOnBounds="true"
+                    preserveRatio="true">
                     <image>
                         <Image url="@../../images/logo-without-name.png"/>
                     </image>
                 </ImageView>
                 <ImageView
-                        fitHeight="40.0"
-                        fitWidth="40.0"
-                        layoutX="15.0"
-                        layoutY="10.0"
-                        pickOnBounds="true"
-                        preserveRatio="true">
+                    fitHeight="40.0"
+                    fitWidth="40.0"
+                    layoutX="15.0"
+                    layoutY="10.0"
+                    pickOnBounds="true"
+                    preserveRatio="true">
                     <image>
                         <Image url="@../../images/Botaovoltar.png"/>
                     </image>
@@ -72,29 +72,29 @@
 
     <!-- Título e botão atualizar -->
     <HBox
-            alignment="CENTER_LEFT"
-            layoutY="70.0"
-            prefHeight="60.0"
-            prefWidth="920.0">
+        alignment="CENTER_LEFT"
+        layoutY="70.0"
+        prefHeight="60.0"
+        prefWidth="920.0">
         <Pane prefHeight="60.0" prefWidth="920.0">
             <Label
-                    layoutX="50.0"
-                    layoutY="10.0"
-                    style="-fx-font-size: 36px; -fx-text-fill: #4CAF50; -fx-font-weight: Bold;"
-                    text="Eventos"/>
+                layoutX="50.0"
+                layoutY="10.0"
+                style="-fx-font-size: 36px; -fx-text-fill: #4CAF50; -fx-font-weight: Bold;"
+                text="Eventos"/>
             <!-- Botão "Atualizar" -->
             <Button
-                    fx:id="refreshButton"
-                    layoutX="811.0"
-                    layoutY="10.0"
-                    onAction="#handleRefreshButtonClick"
-                    style="-fx-background-color: #4CAF50; -fx-background-radius: 20px; -fx-padding: 10; -fx-cursor: hand; -fx-border-color: #2E7D32; -fx-border-width: 2px; -fx-border-radius: 20px;">
+                fx:id="refreshButton"
+                layoutX="811.0"
+                layoutY="10.0"
+                onAction="#handleRefreshButtonClick"
+                style="-fx-background-color: #4CAF50; -fx-background-radius: 20px; -fx-padding: 10; -fx-cursor: hand; -fx-border-color: #2E7D32; -fx-border-width: 2px; -fx-border-radius: 20px;">
                 <graphic>
                     <ImageView
-                            fitHeight="30.0"
-                            fitWidth="52.0"
-                            pickOnBounds="true"
-                            preserveRatio="true">
+                        fitHeight="30.0"
+                        fitWidth="52.0"
+                        pickOnBounds="true"
+                        preserveRatio="true">
                         <image>
                             <Image url="@../../images/refresh.png"/>
                         </image>
@@ -114,8 +114,9 @@
             AnchorPane.leftAnchor="68.0"
             AnchorPane.rightAnchor="68.0">
         <ListView
-                fx:id="eventsList"
-                prefHeight="335.0"
-                prefWidth="785.0"/>
+            fx:id="eventsList"
+            prefHeight="335.0"
+            prefWidth="785.0"
+        />
     </ScrollPane>
 </AnchorPane>
