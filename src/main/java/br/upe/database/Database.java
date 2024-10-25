@@ -10,12 +10,16 @@ import java.io.File;
 
 public class Database {
     private static final String BASEURL;
+    private static final String DERBY_LOG_DIR;
+    private static final String DERBY_LOG_FILE;
 
     static {
         String userHomeDirectory = System.getProperty("user.home");
-        userHomeDirectory = userHomeDirectory.replace(File.separator, "/");
-        String databaseDirectory = userHomeDirectory + "/nexus/prog3";
-        BASEURL = "jdbc:derby:" + databaseDirectory;
+        String databaseName = userHomeDirectory.replace(File.separator, "/") + "/nexus/prog3";
+        String sep = File.separator;
+        DERBY_LOG_DIR = userHomeDirectory + sep + "nexus";
+        DERBY_LOG_FILE = DERBY_LOG_DIR + sep + "derby.log" ;
+        BASEURL = "jdbc:derby:" + databaseName;
     }
 
     private Database() {}
@@ -37,7 +41,18 @@ public class Database {
     }
 
     public static void initializeDatabase() throws SQLException {
+        File derbyLogDir = new File(DERBY_LOG_DIR);
+
+        boolean result = true;
+        if (!derbyLogDir.exists()) {
+            result = derbyLogDir.mkdirs();
+        }
+        if (!result) {
+            throw new RuntimeException("An error ocurred during the creation of the nexus directory.");
+        }
+
         String createURL = BASEURL + ";create=true";
+        System.setProperty("derby.stream.error.file", DERBY_LOG_FILE);
         Connection connection = DriverManager.getConnection(createURL);
 
         try (connection) {
