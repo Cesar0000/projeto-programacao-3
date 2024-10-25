@@ -47,7 +47,16 @@ public class ProfileScreenController {
 
     @FXML
     private void initialize() {
+        loadUserInfo();  // Carrega as informações do usuário ao inicializar a tela
+    }
 
+    // Método para carregar e exibir o nome e e-mail do usuário
+    private void loadUserInfo() {
+        String userName = authenticationService.getCurrentUserName();
+        String userEmail = authenticationService.getCurrentUserEmail();
+
+        userNameLabel.setText(userName != null ? userName : "Nome não disponível");
+        userEmailLabel.setText(userEmail != null ? userEmail : "E-mail não disponível");
     }
 
     @FXML
