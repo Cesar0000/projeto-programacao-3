@@ -99,7 +99,23 @@ public class HomeScreenController {
 
     @FXML
     private void handleAccessProfileButtonClick() {
+        Parent profileScreen;
 
+        try {
+            profileScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/ProfileScreen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            showError(
+                "Erro ao carregar a próxima tela",
+                "Um erro inesperado ocorreu durante o carregamento da tela de profile."
+            );
+
+            return;
+        }
+
+        Stage mainStage = AppContext.mainStage;
+        mainStage.getScene().setRoot(profileScreen);
     }
 
     private void showError(String title, String message) {
