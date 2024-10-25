@@ -114,7 +114,7 @@
             AnchorPane.leftAnchor="68.0"
             AnchorPane.rightAnchor="68.0">
         <ListView
-            fx:id="eventsList"
+            fx:id="eventsListView"
             prefHeight="335.0"
             prefWidth="785.0"
         />

@@ -27,6 +27,5 @@
         prefWidth="117.0"
         style="-fx-background-color: #4CAF50; -fx-text-fill: white;"
         text="Ver detalhes"
-        onAction="#handleSeeEventDetailsButton"
     />
 </HBox>
