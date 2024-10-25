@@ -5,8 +5,11 @@ import br.upe.models.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 
 public class EventsListItemController {
+    private Event event;
 
     @FXML
     private Label eventNameLabel;
@@ -17,24 +20,14 @@ public class EventsListItemController {
     @FXML
     private Button seeEventDetailsButton;
 
-    @FXML
-    private void initialize() {
-        
+    public void setButtonHandle(EventHandler<ActionEvent> handle) {
+        seeEventDetailsButton.setOnAction(handle);
     }
 
-    @FXML
-    private void handleSeeEventDetailsButtonClick() {
+    public void setEventDetails(Event event) {
+        this.event = event;
 
-    }
-
-    public void setEventData(Event event) {
-        //this.event = event;
-
-        // Define os dados no layout
-        //tituloLabel.setText(event.getName());
-        //descricaoLabel.setText(event.getDescription());
-
-        // Ação do botão "Ver detalhes"
-        //detalhesButton.setOnAction(e -> {System.out.println("Detalhes do evento: " + event.getName());});
+        eventNameLabel.setText(event.getName());
+        eventDescriptionLabel.setText(event.getDescription());
     }
 }

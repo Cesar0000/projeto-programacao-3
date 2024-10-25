@@ -121,10 +121,10 @@ public class RegisterScreenController {
     
             alert.showAndWait();
 
+            Parent loginScreen;
+
             try {
-                Parent loginScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/LoginScreen.fxml"));
-                Stage mainStage = AppContext.mainStage;
-                mainStage.getScene().setRoot(loginScreen);
+                loginScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/LoginScreen.fxml"));
             }
             catch (IOException error) {
                 showError(
@@ -134,8 +134,13 @@ public class RegisterScreenController {
 
                 registerButton.setDisable(false);
                 registerButton.setText("Criar conta");
-                loginButton.setDisable(false);                
+                loginButton.setDisable(false);
+
+                return;
             }
+
+            Stage mainStage = AppContext.mainStage;
+            mainStage.getScene().setRoot(loginScreen);
         });
 
         registerUserTask.setOnFailed(e -> {
@@ -149,7 +154,9 @@ public class RegisterScreenController {
             }
             else {
                 showError("Erro ao criar conta", "Um erro inesperado ocorreu.");
-                error.printStackTrace();
+                if (error != null) {
+                    error.printStackTrace();
+                }
             }
 
             registerButton.setDisable(false);
@@ -163,10 +170,10 @@ public class RegisterScreenController {
 
     @FXML
     private void handleLoginButtonClick() {
+        Parent loginScreen;
+
         try {
-            Parent loginScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/LoginScreen.fxml"));
-            Stage mainStage = AppContext.mainStage;
-            mainStage.getScene().setRoot(loginScreen);
+            loginScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/LoginScreen.fxml"));
         }
         catch (IOException error) {
             error.printStackTrace();
@@ -175,7 +182,12 @@ public class RegisterScreenController {
                 "Erro ao carregar próxima tela",
                 "Um erro inesperado ocorreu durante o carregamento da tela de login."
             );
+
+            return;
         }
+
+        Stage mainStage = AppContext.mainStage;
+        mainStage.getScene().setRoot(loginScreen);
     }
 
     private void validateNameField() {
