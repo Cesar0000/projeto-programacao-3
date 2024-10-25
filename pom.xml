@@ -190,7 +190,7 @@
             <properties>
                 <!-- <app.version>1.0.${env.GITHUB_RUN_NUMBER}</app.version> -->
                 <app.name>Nexus</app.name>
-                <jvm.modules>javafx.controls,javafx.fxml,org.apache.derby.engine</jvm.modules>
+                <jvm.modules>javafx.controls,javafx.fxml</jvm.modules>
                 <windows.upgrade.uuid>bba015ac-8747-47c4-ad2a-55f200760288</windows.upgrade.uuid>
                 <windows.vendor>UPE</windows.vendor>
             </properties>
