@@ -111,6 +111,7 @@
                      onAction="#handleRegisterButtonClick"
                   />
                </VBox>
+
             </StackPane>
          </children>
       </AnchorPane>
