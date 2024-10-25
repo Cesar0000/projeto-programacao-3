@@ -6,8 +6,6 @@ public class User {
     private String email;
     private byte[] password;
 
-    public User() {}
-
     public Long getId() {
         return id;
     }

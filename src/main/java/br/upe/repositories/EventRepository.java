@@ -21,7 +21,7 @@ public class EventRepository {
 
     public Optional<Event> findById(long id) throws SQLException {
         String query = """
-            SELECT *
+            SELECT id, name, description, start_date, end_date
             FROM events
             WHERE id = ?
         """;
@@ -32,7 +32,7 @@ public class EventRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the event was not found return an empty Optional
-            if (resultSet.next() == false) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 
@@ -50,17 +50,17 @@ public class EventRepository {
 
     public List<Event> findAll() throws SQLException {
         String query = """
-            SELECT *
+            SELECT id, name, description, start_date, end_date
             FROM events
         """;
 
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
 
-            List<Event> events = new ArrayList<Event>();
+            List<Event> events = new ArrayList<>();
 
             // Fill the list with all the events
-            while (resultSet.next() != false) {
+            while (resultSet.next()) {
                 Event event = new Event();
                 event.setId(resultSet.getLong("id"));
                 event.setName(resultSet.getString("name"));

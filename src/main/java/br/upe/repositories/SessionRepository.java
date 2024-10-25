@@ -21,7 +21,7 @@ public class SessionRepository {
 
     public Optional<Session> findById(long eventId, long sessionNumber) throws SQLException {
         String query = """
-            SELECT *
+            SELECT event_id, session_number, name, date, start_time, end_time
             FROM sessions
             WHERE event_id = ? AND session_number = ?
         """;
@@ -33,7 +33,7 @@ public class SessionRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the session was not found return an empty Optional
-            if (resultSet.next() == false) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 
@@ -52,17 +52,17 @@ public class SessionRepository {
 
     public List<Session> findAll() throws SQLException {
         String query = """
-            SELECT *
+            SELECT event_id, session_number, name, date, start_time, end_time
             FROM sessions
         """;
 
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
 
-            List<Session> sessions = new ArrayList<Session>();
+            List<Session> sessions = new ArrayList<>();
 
             // Fill the list with all the sessions
-            while (resultSet.next() != false) {
+            while (resultSet.next()) {
                 Session session = new Session();
                 session.setEventId(resultSet.getLong("event_id"));
                 session.setSessionNumber(resultSet.getLong("session_number"));
@@ -80,7 +80,7 @@ public class SessionRepository {
 
     public List<Session> findAllSessionsForEventId(long eventId) throws SQLException {
         String query = """
-            SELECT *
+            SELECT event_id, session_number, name, date, start_time, end_time
             FROM sessions
             WHERE event_id = ?
         """;
@@ -90,10 +90,10 @@ public class SessionRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Session> eventSessions = new ArrayList<Session>();
+            List<Session> eventSessions = new ArrayList<>();
 
             // Fill the list with all the event sessions found
-            while (resultSet.next() != false) {
+            while (resultSet.next()) {
                 Session session = new Session();
                 session.setEventId(resultSet.getLong("event_id"));
                 session.setSessionNumber(resultSet.getLong("session_number"));

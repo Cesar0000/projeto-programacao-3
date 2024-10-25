@@ -68,7 +68,7 @@
     </HBox>
     <!-- Título e botão atualizar -->
     <HBox
-        lignment="CENTER_LEFT"
+        alignment="CENTER_LEFT"
         layoutY="70.0"
         prefHeight="60.0"
         prefWidth="800.0">

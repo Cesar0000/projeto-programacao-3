@@ -1,14 +1,17 @@
 package br.upe.controllers;
 
+import br.upe.userinterface.AppContext;
+
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import br.upe.userInterface.AppContext;
-
-import java.io.IOException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class HomeScreenController {
     @FXML
@@ -31,12 +34,6 @@ public class HomeScreenController {
 
     @FXML
     private void initialize() {
-        accessProfileButton.setOnAction(event -> handleAccessProfileButtonClick());
-        exitButton.setOnAction(event -> handleExitButtonClick());
-        configurationButton.setOnAction(event -> handleConfigurationButtonClick());
-        accessEventsButton.setOnAction(event -> handleAccessEventsButtonClick());
-        accessSubscriptionsButton.setOnAction(event -> handleAccessSubscriptionsButtonClick());
-        accessSubmissionsButton.setOnAction(event -> handleAccessSubmissionsButtonClick());
     }
 
     @FXML
@@ -47,6 +44,11 @@ public class HomeScreenController {
             mainStage.getScene().setRoot(loginScreen);
         } catch (IOException error) {
             error.printStackTrace();
+
+            showError(
+                "Erro ao carregar a próxima tela",
+                "Um erro inesperado ocorreu durante o carregamento da tela de login."
+            );
         }
     }
 
@@ -58,17 +60,16 @@ public class HomeScreenController {
     @FXML
     private void handleAccessEventsButtonClick() {
         try {
-            Parent eventScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/EventScreen.fxml"));
+            Parent eventsScreen = FXMLLoader.load(getClass().getResource("/fxml/screens/EventsScreen.fxml"));
             Stage mainStage = AppContext.mainStage;
-            mainStage.getScene().setRoot(eventScreen);
+            mainStage.getScene().setRoot(eventsScreen);
         } catch (IOException e) {
             e.printStackTrace();
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro ao carregar a tela de eventos");
-            alert.setHeaderText(null);
-            alert.setContentText("Ocorreu um erro ao tentar carregar a tela de eventos.");
-            alert.showAndWait();
+            showError(
+                "Erro ao carregar a próxima tela",
+                "Um erro inesperado ocorreu durante o carregamento da tela de listagem dos eventos."
+            );
         }
     }
 
@@ -85,5 +86,13 @@ public class HomeScreenController {
     @FXML
     private void handleAccessProfileButtonClick() {
 
+    }
+
+    private void showError(String title, String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

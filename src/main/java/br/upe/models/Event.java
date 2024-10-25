@@ -9,8 +9,6 @@ public class Event {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public Event() {}
-
     public Long getId() {
         return id;
     }

@@ -12,7 +12,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Blob;
 
 import java.text.MessageFormat;
 
@@ -95,7 +94,7 @@ public class UserRepository {
 
     public Optional<User> findById(long id) throws SQLException {
         String query = """
-            SELECT *
+            SELECT id, name, email, password
             FROM users
             WHERE id = ?
         """;
@@ -106,7 +105,7 @@ public class UserRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the user was not found return an empty Optional
-            if (resultSet.next() == false) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 
@@ -123,7 +122,7 @@ public class UserRepository {
 
     public Optional<User> findByEmail(String email) throws SQLException {
         String query = """
-            SELECT *
+            SELECT id, name, email, password
             FROM users
             WHERE email = ?
         """;
@@ -134,7 +133,7 @@ public class UserRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // If the user was not found return an empty Optional
-            if (resultSet.next() == false) {
+            if (!resultSet.next()) {
                 return Optional.empty();
             }
 
@@ -151,17 +150,17 @@ public class UserRepository {
 
     public List<User> findAll() throws SQLException {
         String query = """
-            SELECT *
+            SELECT id, name, email, password
             FROM users
         """;
 
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
 
-            List<User> users = new ArrayList<User>();
+            List<User> users = new ArrayList<>();
 
             // Fill the list with all the users
-            while (resultSet.next() != false) {
+            while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getLong("id"));
                 user.setName(resultSet.getString("name"));
