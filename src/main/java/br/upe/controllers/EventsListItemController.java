@@ -27,7 +27,6 @@ public class EventsListItemController {
 
     }
 
-    // Método para definir os dados do evento
     public void setEventData(Event event) {
         //this.event = event;
 

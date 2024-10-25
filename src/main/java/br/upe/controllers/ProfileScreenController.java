@@ -10,6 +10,9 @@ import javafx.scene.control.Alert.AlertType;
 public class ProfileScreenController {
 
     @FXML
+    private Button returnButton;
+
+    @FXML
     private Label userNameLabel;
 
     @FXML
@@ -19,39 +22,31 @@ public class ProfileScreenController {
     private Button changePasswordButton;
 
     @FXML
-    private Label currentPasswordLabel;
-
-    @FXML
     private PasswordField currentPasswordField;
-
-    @FXML
-    private Label newPasswordLabel;
 
     @FXML
     private PasswordField newPasswordField;
 
     @FXML
-    private Button confirmButton;
+    private Button confirmPasswordChangeButton;
 
     @FXML
-    private Button returnButton;
+    private Button exitButton;
 
     @FXML
-    private Button logoutButton;
+    private Button deleteProfileButton;
 
     @FXML
-    private Button deleteAccountButton;
+    private void initialize() {
 
-    // Evento para o botão de retorno
-    @FXML
-    private void handleReturnButtonClick() {
-        // Lógica para retornar à tela anterior
-        System.out.println("Botão Voltar pressionado!");
     }
 
-    // Evento para alterar a senha (tornar os campos visíveis)
     @FXML
-    private void handleChangePasswordClick() {
+    private void handleReturnButtonClick() {
+    }
+
+    @FXML
+    private void handleChangePasswordButtonClick() {
         currentPasswordLabel.setVisible(true);
         currentPasswordField.setVisible(true);
         newPasswordLabel.setVisible(true);
@@ -59,9 +54,8 @@ public class ProfileScreenController {
         confirmButton.setVisible(true);
     }
 
-    // Evento para confirmar a alteração da senha
     @FXML
-    private void handleConfirmPasswordChangeClick() {
+    private void handleConfirmPasswordChangeButtonClick() {
         String currentPassword = currentPasswordField.getText();
         String newPassword = newPasswordField.getText();
 
@@ -73,30 +67,11 @@ public class ProfileScreenController {
         }
     }
 
+    @FXML
+    private void handleExitButtonClick() {
+    }
 
     @FXML
-    private void handleLogoutClick() {
-        // Lógica para logout
-        System.out.println("Logout realizado!");
-    }
-
-
-    @FXML
-    private void handleDeleteAccountClick() {
-        // Lógica para excluir a conta
-        System.out.println("Conta excluída!");
-    }
-
-
-    private boolean validatePassword(String currentPassword, String newPassword) {
-
-        return !currentPassword.isEmpty() && !newPassword.isEmpty() && !currentPassword.equals(newPassword);
-    }
-
-
-    private void showAlert(String message, AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void handleDeleteProfileButtonClick() {
     }
 }
