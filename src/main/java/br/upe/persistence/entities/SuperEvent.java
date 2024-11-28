@@ -3,6 +3,10 @@ package br.upe.persistence.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.FetchType;
 
 import java.time.LocalDateTime;
 
@@ -10,32 +14,46 @@ import java.time.LocalDateTime;
 @Table(name = "SuperEvents")
 public class SuperEvent extends Event {
 
-    @Column(name = "subscriptionsStartDateTime")
-    private LocalDateTime subscriptionsStartDateTime;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(
+        name = "accountId",
+        referencedColumnName = "id",
+        nullable = false,
+        foreignKey = @ForeignKey(name = "superEventToAccountFK")
+    )
+    private Account account;
 
-    @Column(name = "subscriptionsEndDateTime")
-    private LocalDateTime subscriptionsEndDateTime;
+    @Column(name = "subscriptionsStartTime")
+    private LocalDateTime subscriptionsStartTime;
+
+    @Column(name = "subscriptionsEndTime")
+    private LocalDateTime subscriptionsEndTime;
 
     protected SuperEvent() {}
 
-    public SuperEvent(Account account, String name) {
-        super(account, name);
+    public SuperEvent(String name, Account account) {
+        super(name);
+        this.account = account;
     }
 
-    public LocalDateTime getSubscriptionsStartDateTime() {
-        return subscriptionsStartDateTime;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setSubscriptionsStartDateTime(LocalDateTime subscriptionsStartDateTime) {
-        this.subscriptionsStartDateTime = subscriptionsStartDateTime;
+    public LocalDateTime getSubscriptionsStartTime() {
+        return subscriptionsStartTime;
     }
 
-    public LocalDateTime getSubscriptionsEndDateTime() {
-        return subscriptionsEndDateTime;
+    public void setSubscriptionsStartTime(LocalDateTime subscriptionsStartTime) {
+        this.subscriptionsStartTime = subscriptionsStartTime;
     }
 
-    public void setSubscriptionsEndDateTime(LocalDateTime subscriptionsEndDateTime) {
-        this.subscriptionsEndDateTime = subscriptionsEndDateTime;
+    public LocalDateTime getSubscriptionsEndTime() {
+        return subscriptionsEndTime;
+    }
+
+    public void setSubscriptionsEndTime(LocalDateTime subscriptionsEndTime) {
+        this.subscriptionsEndTime = subscriptionsEndTime;
     }
 
     @Override
@@ -43,8 +61,8 @@ public class SuperEvent extends Event {
         if (this == obj) return true;
 
         return obj instanceof SuperEvent otherSuperEvent
-            && id != null
-            && id.equals(otherSuperEvent.getId());
+            && getId() != null
+            && getId().equals(otherSuperEvent.getId());
     }
 
     @Override
