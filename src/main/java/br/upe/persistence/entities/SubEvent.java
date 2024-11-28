@@ -36,8 +36,8 @@ public class SubEvent extends Event {
         if (this == obj) return true;
 
         return obj instanceof SubEvent otherSubEvent
-            && id != null
-            && id.equals(otherSubEvent.getId());
+            && getId() != null
+            && getId().equals(otherSubEvent.getId());
     }
 
     @Override
