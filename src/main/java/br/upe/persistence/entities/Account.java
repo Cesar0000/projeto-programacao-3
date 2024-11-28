@@ -14,10 +14,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "Accounts")
 public class Account {
-    private static final int USERNAME_COLUMN_MAX_LENGTH = 20;
-    private static final int EMAIL_COLUMN_MAX_LENGTH = 50;
-    private static final int PASSWORD_COLUMN_MAX_LENGTH = 32;
-    private static final int NAME_COLUMN_MAX_LEGNTH = 50;
+    public static final int USERNAME_MAX_LENGTH = 20;
+    public static final int EMAIL_MAX_LENGTH = 50;
+    public static final int PASSWORD_MAX_LENGTH = 32;
+    public static final int NAME_MAX_LENGTH = 50;
 
     @Id
     @GeneratedValue
@@ -29,7 +29,7 @@ public class Account {
         name = "username",
         nullable = false,
         unique = true,
-        length = USERNAME_COLUMN_MAX_LENGTH
+        length = USERNAME_MAX_LENGTH
     )
     private String username;
 
@@ -38,14 +38,14 @@ public class Account {
         name = "email",
         nullable = false,
         unique = true,
-        length = EMAIL_COLUMN_MAX_LENGTH
+        length = EMAIL_MAX_LENGTH
     )
     private String email;
 
     @Column(
         name = "password",
         nullable = false,
-        length = PASSWORD_COLUMN_MAX_LENGTH
+        length = PASSWORD_MAX_LENGTH
     )
     private byte[] password;
 
@@ -53,7 +53,7 @@ public class Account {
     @Column(
         name = "name",
         nullable = false,
-        length = NAME_COLUMN_MAX_LEGNTH
+        length = NAME_MAX_LENGTH
     )
     private String name;
 
@@ -64,12 +64,6 @@ public class Account {
     protected Account() {}
 
     public Account(String username, String email, byte[] password) {
-        Objects.requireNonNull(username, "username must not be null");
-
-        if (username.codePointCount(0, username.length()) > USERNAME_COLUMN_MAX_LENGTH) {
-            throw new IllegalArgumentException("username exceeded the maximum permitted length");
-        }
-
         this.username = username;
         setEmail(email);
         setPassword(password);
@@ -88,12 +82,6 @@ public class Account {
     }
 
     public void setEmail(String email) {
-        Objects.requireNonNull(email, "email must not be null");
-
-        if (email.codePointCount(0, email.length()) > EMAIL_COLUMN_MAX_LENGTH) {
-            throw new IllegalArgumentException("email exceeded the maximum permitted length");
-        }
-
         this.email = email;
     }
 
@@ -102,10 +90,6 @@ public class Account {
     }
 
     public void setPassword(byte[] password) {
-        if (password.length > PASSWORD_COLUMN_MAX_LENGTH) {
-            throw new IllegalArgumentException("password exceeded the maximum permitted length");
-        }
-
         this.password = password;
     }
 
@@ -114,12 +98,6 @@ public class Account {
     }
 
     public void setName(String name) {
-        Objects.requireNonNull(name, "name must not be null");
-
-        if (name.codePointCount(0, name.length()) > NAME_COLUMN_MAX_LEGNTH) {
-            throw new IllegalArgumentException("name exceeded the maximum permitted length");
-        }
-
         this.name = name;
     }
 
