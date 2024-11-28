@@ -18,13 +18,7 @@ import java.time.LocalDate;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(
-    name = "Events",
-    uniqueConstraints = @UniqueConstraint(
-        name = "uniqueEventNamePerAccount",
-        columnNames = {"accountId", "name"}
-    )
-)
+@Table(name = "Events")
 public abstract class Event {
     private static final int NAME_MAX_LENGTH = 100;
     private static final int DESCRIPTION_MAX_LENGTH = 1_000;
