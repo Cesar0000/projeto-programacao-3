@@ -9,7 +9,6 @@ import jakarta.persistence.Column;
 
 import java.time.Instant;
 import java.util.UUID;
-import java.util.Objects;
 
 @Entity
 @Table(name = "Accounts")
