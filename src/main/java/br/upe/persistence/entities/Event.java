@@ -6,14 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.UniqueConstraint;
 
 import java.time.Instant;
 import java.util.UUID;
-import java.util.Objects;
 import java.time.LocalDate;
 
 @Entity
@@ -27,15 +22,6 @@ public abstract class Event {
     @GeneratedValue
     @Column(name = "id")
     private UUID id;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(
-        name = "accountId",
-        referencedColumnName = "id",
-        nullable = false,
-        foreignKey = @ForeignKey(name = "eventToAccountFK")
-    )
-    private Account account;
 
     @Basic(optional = false)
     @Column(
@@ -65,8 +51,7 @@ public abstract class Event {
 
     protected Event() {}
 
-    public Event(Account account, String name) {
-        this.account = account;
+    public Event(String name) {
         setName(name);
     }
 
