@@ -108,6 +108,10 @@ public class Session {
         this.endTime = endTime;
     }
 
+    public Instant getCreatedAtTimestamp() {
+        return createdAtTimestamp;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
