@@ -26,8 +26,8 @@ import java.time.LocalDate;
     )
 )
 public abstract class Event {
-    private static final int NAME_COLUMN_MAX_LEGNTH = 100;
-    private static final int DESCRIPTION_COLUMN_MAX_LEGNTH = 1_000;
+    private static final int NAME_MAX_LENGTH = 100;
+    private static final int DESCRIPTION_MAX_LENGTH = 1_000;
 
     @Id
     @GeneratedValue
@@ -47,7 +47,7 @@ public abstract class Event {
     @Column(
         name = "name",
         nullable = false,
-        length = NAME_COLUMN_MAX_LEGNTH
+        length = NAME_MAX_LENGTH
     )
     private String name;
 
@@ -55,7 +55,7 @@ public abstract class Event {
     @Column(
         name = "description",
         nullable = false,
-        length = DESCRIPTION_COLUMN_MAX_LEGNTH
+        length = DESCRIPTION_MAX_LENGTH
     )
     private String description = "";
 
@@ -72,7 +72,7 @@ public abstract class Event {
     protected Event() {}
 
     public Event(Account account, String name) {
-        this.account = Objects.requireNonNull(account, "account must not be null");
+        this.account = account;
         setName(name);
     }
 
@@ -89,12 +89,6 @@ public abstract class Event {
     }
 
     public void setName(String name) {
-        Objects.requireNonNull(name, "name must not be null");
-
-        if (name.codePointCount(0, name.length()) > NAME_COLUMN_MAX_LEGNTH) {
-            throw new IllegalArgumentException("name exceeded the maximum permitted length");
-        }
-
         this.name = name;
     }
 
@@ -103,12 +97,6 @@ public abstract class Event {
     }
 
     public void setDescription(String description) {
-        Objects.requireNonNull(description, "name must not be null");
-
-        if (description.codePointCount(0, description.length()) > DESCRIPTION_COLUMN_MAX_LEGNTH) {
-            throw new IllegalArgumentException("description exceeded the maximum permitted length");
-        }
-
         this.description = description;
     }
 
@@ -117,12 +105,6 @@ public abstract class Event {
     }
 
     public void setStartDate(LocalDate startDate) {
-        Objects.requireNonNull(startDate, "startDate must not be null");
-
-        if (endDate != null && startDate.isAfter(endDate)) {
-            throw new IllegalArgumentException("startDate must be <= endDate");
-        }
-
         this.startDate = startDate;
     }
 
@@ -131,12 +113,6 @@ public abstract class Event {
     }
 
     public void setEndDate(LocalDate endDate) {
-        Objects.requireNonNull(endDate, "endDate must not be null");
-
-        if (startDate != null && endDate.isBefore(startDate)) {
-            throw new IllegalArgumentException("endDate must be >= startDate");
-        }
-
         this.endDate = endDate;
     }
 
