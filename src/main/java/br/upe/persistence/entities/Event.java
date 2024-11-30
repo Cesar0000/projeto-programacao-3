@@ -1,12 +1,16 @@
 package br.upe.persistence.entities;
 
+// JPA imports
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.InheritanceType;
 
+// Java imports
 import java.time.Instant;
 import java.util.UUID;
 import java.time.LocalDate;
@@ -19,8 +23,12 @@ public abstract class Event {
     private static final int DESCRIPTION_MAX_LENGTH = 1_000;
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(
+        name = "id",
+        nullable = false,
+        updatable = false
+    )
     private UUID id;
 
     @Basic(optional = false)
@@ -46,7 +54,11 @@ public abstract class Event {
     private LocalDate endDate;
 
     @Basic(optional = false)
-    @Column(name = "createdAtTimestamp", nullable = false)
+    @Column(
+        name = "createdAtTimestamp",
+        nullable = false,
+        updatable = false
+    )
     private Instant createdAtTimestamp = Instant.now();
 
     protected Event() {}
