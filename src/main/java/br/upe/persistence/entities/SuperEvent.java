@@ -1,5 +1,6 @@
 package br.upe.persistence.entities;
 
+// JPA imports
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
@@ -8,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.FetchType;
 
+// Java imports
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,6 +21,7 @@ public class SuperEvent extends Event {
         name = "accountId",
         referencedColumnName = "id",
         nullable = false,
+        updatable = false,
         foreignKey = @ForeignKey(name = "superEventToAccountFK")
     )
     private Account account;
