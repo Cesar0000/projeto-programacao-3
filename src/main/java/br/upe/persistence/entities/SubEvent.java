@@ -1,10 +1,12 @@
 package br.upe.persistence.entities;
 
+// JPA imports
 import jakarta.persistence.Entity;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 
+// Java imports
 import java.util.UUID;
 
 @Entity
@@ -16,6 +18,7 @@ public class SubEvent extends Event {
         name = "superEventId",
         referencedColumnName = "id",
         nullable = false,
+        updatable = false,
         foreignKey = @ForeignKey(name = "subEventToSuperEventFK")
     )
     private SuperEvent superEvent;
