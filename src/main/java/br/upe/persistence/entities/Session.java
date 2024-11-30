@@ -1,5 +1,6 @@
 package br.upe.persistence.entities;
 
+// JPA imports
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GenerationType;
 
+// Java imports
 import java.time.Instant;
 import java.util.UUID;
 import java.time.LocalDateTime;
@@ -22,8 +25,12 @@ public class Session {
     public static final int DESCRIPTION_MAX_LENGTH = 1_000;
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(
+        name = "id",
+        nullable = false,
+        updatable = false
+    )
     private UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -31,6 +38,7 @@ public class Session {
         name = "eventId",
         referencedColumnName = "id",
         nullable = false,
+        updatable = false,
         foreignKey = @ForeignKey(name = "sessionToEventFK")
     )
     private Event event;
@@ -58,7 +66,11 @@ public class Session {
     private LocalDateTime endTime;
 
     @Basic(optional = false)
-    @Column(name = "createdAtTimestamp", nullable = false)
+    @Column(
+        name = "createdAtTimestamp",
+        nullable = false,
+        updatable = false
+    )
     private Instant createdAtTimestamp = Instant.now();
 
     protected Session() {}
