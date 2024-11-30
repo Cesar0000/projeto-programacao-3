@@ -1,5 +1,6 @@
 package br.upe.persistence.entities;
 
+// JPA imports
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GenerationType;
 
+// Java imports
 import java.time.Instant;
 import java.util.UUID;
 
@@ -20,8 +23,12 @@ public class Submission {
     public static final int ARTICLE_NAME_MAX_LENGTH = 255;
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(
+        name = "id",
+        nullable = false,
+        updatable = false
+    )
     private UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -29,7 +36,8 @@ public class Submission {
         name = "accountId",
         referencedColumnName = "id",
         nullable = false,
-        foreignKey = @ForeignKey(name = "accountToSubmissionFK")
+        updatable = false,
+        foreignKey = @ForeignKey(name = "submissionToAccountFK")
     )
     private Account account;
 
@@ -38,7 +46,8 @@ public class Submission {
         name = "eventId",
         referencedColumnName = "id",
         nullable = false,
-        foreignKey = @ForeignKey(name = "eventToSubmissionFK")
+        updatable = false,
+        foreignKey = @ForeignKey(name = "submissionToEventFK")
     )
     private Event event;
 
@@ -51,7 +60,11 @@ public class Submission {
     private String articleName;
 
     @Basic(optional = false)
-    @Column(name = "createdAtTimestamp", nullable = false)
+    @Column(
+        name = "createdAtTimestamp",
+        nullable = false,
+        updatable = false
+    )
     private Instant createdAtTimestamp = Instant.now();
 
     protected Submission() {}
