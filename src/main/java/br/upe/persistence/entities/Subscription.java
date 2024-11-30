@@ -1,5 +1,6 @@
 package br.upe.persistence.entities;
 
+// JPA imports
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +12,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GenerationType;
 
+// Java imports
 import java.time.Instant;
 import java.util.UUID;
 
@@ -19,15 +22,18 @@ import java.util.UUID;
 @Table(
     name = "Subscriptions",
     uniqueConstraints = @UniqueConstraint(
-        name = "subscriptionsUniqueConstraint",
+        name = "uniqueAccountSubscriptionsConstraint",
         columnNames = {"accountId", "superEventId"}
     )
 )
 public class Subscription {
-
     @Id
-    @GeneratedValue
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(
+        name = "id",
+        nullable = false,
+        updatable = false
+    )
     private UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -35,6 +41,7 @@ public class Subscription {
         name = "accountId",
         referencedColumnName = "id",
         nullable = false,
+        updatable = false,
         foreignKey = @ForeignKey(name = "subscriptionToAccountFK")
     )
     private Account account;
@@ -44,12 +51,17 @@ public class Subscription {
         name = "superEventId",
         referencedColumnName = "id",
         nullable = false,
+        updatable = false,
         foreignKey = @ForeignKey(name = "subscriptionToSuperEventFK")
     )
     private SuperEvent superEvent;
 
     @Basic(optional = false)
-    @Column(name = "createdAtTimestamp", nullable = false)
+    @Column(
+        name = "createdAtTimestamp",
+        nullable = false,
+        updatable = false
+    )
     private Instant createdAtTimestamp = Instant.now();
 
     protected Subscription() {}
