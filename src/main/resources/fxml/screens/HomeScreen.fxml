@@ -1,86 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane
-        maxHeight="520.0"
-        maxWidth="920.0"
-        minHeight="520.0"
-        minWidth="920.0"
-        prefHeight="520.0"
-        prefWidth="920.0"
-        xmlns="http://javafx.com/javafx/21"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="br.upe.controllers.HomeScreenController">
-    <BorderPane
-            maxHeight="520.0"
-            maxWidth="920.0"
-            minHeight="520.0"
-            minWidth="920.0"
-            prefHeight="520.0"
-            prefWidth="920.0">
+<AnchorPane maxHeight="520.0" maxWidth="920.0" minHeight="520.0" minWidth="920.0" prefHeight="520.0" prefWidth="920.0" style="-fx-background-color: #EFEFEF; -fx-background-image: url('/images/Background.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.controllers.HomeScreenController">
+    <BorderPane maxHeight="520.0" maxWidth="920.0" minHeight="520.0" minWidth="920.0" prefHeight="520.0" prefWidth="920.0">
         <top>
-            <HBox
-                    alignment="CENTER_LEFT"
-                    prefHeight="60.0"
-                    prefWidth="920.0"
-                    style="-fx-background-color: #292929;">
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="920.0" style="-fx-background-color: #292929;">
                 <Pane prefHeight="60.0" prefWidth="920.0">
                     <children>
-                        <ImageView
-                                fitHeight="40.0"
-                                fitWidth="66.0"
-                                layoutX="14.0"
-                                layoutY="10.0"
-                                pickOnBounds="true"
-                                preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="66.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../images/logo-without-name.png" />
                             </image>
-                            <effect>
-                                <ColorAdjust contrast="1.0" saturation="1.0" />
-                            </effect>
                         </ImageView>
-                        <Button
-                                fx:id="exitButton"
-                                layoutX="780.0"
-                                layoutY="18.0"
-                                style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;"
-                                text="Sair"
-                                onAction="#handleExitButtonClick"
-                        />
-                        <Button
-                                fx:id="configurationButton"
-                                layoutX="840.0"
-                                layoutY="12.0"
-                                prefHeight="35.0"
-                                prefWidth="41.0"
-                                style="-fx-background-color: transparent;"
-                                onAction="#handleConfigurationButtonClick">
+                        <Button fx:id="exitButton" layoutX="780.0" layoutY="18.0" onAction="#handleExitButtonClick" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Sair" />
+                        <Button fx:id="configurationButton" layoutX="840.0" layoutY="12.0" onAction="#handleConfigurationButtonClick" prefHeight="35.0" prefWidth="41.0" style="-fx-background-color: transparent;">
                             <graphic>
-                                <ImageView
-                                        fitHeight="44.0"
-                                        fitWidth="36.0"
-                                        pickOnBounds="true"
-                                        preserveRatio="true">
+                                <ImageView fitHeight="44.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../images/ConfigButton.png" />
                                     </image>
-                                    <effect>
-                                        <ColorAdjust brightness="0.92" hue="0.96" />
-                                    </effect>
                                 </ImageView>
                             </graphic>
                         </Button>
@@ -89,155 +30,43 @@
             </HBox>
         </top>
         <left>
-            <AnchorPane
-                    prefHeight="460.0"
-                    prefWidth="265.0"
-                    style="-fx-background-color: white;"
-                    BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="460.0" prefWidth="920.0" BorderPane.alignment="CENTER">
                 <children>
-                    <ImageView
-                            fitHeight="255.0"
-                            fitWidth="259.0"
-                            layoutX="12.0"
-                            layoutY="60.0"
-                            pickOnBounds="true"
-                            preserveRatio="true">
-                        <image>
-                            <Image url="@../../images/logo-with-name.png" />
-                        </image>
-                    </ImageView>
+                    <GridPane alignment="CENTER" hgap="50" layoutX="0.0" layoutY="0.0" prefHeight="460.0" prefWidth="920.0" style="-fx-padding: 20;" vgap="50">
+                        <children>
+
+                            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0" spacing="15.0" style="-fx-border-color: black; -fx-padding: 15; -fx-border-radius: 10;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 22px; -fx-font-family: 'Arial Rounded MT Bold'; -fx-font-weight: bold;" text="Encontre Eventos" />
+                                <Label prefHeight="75.0" prefWidth="260.0" style="-fx-font-size: 16px; -fx-wrap-text: true;" text="Procure eventos de seu interesse e participe de atividades incríveis." textAlignment="CENTER" />
+                                <Button fx:id="accessEventsButton" onAction="#handleAccessEventsButtonClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;" text="Acessar" />
+                            </VBox>
+                            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0" spacing="15.0" style="-fx-border-color: black; -fx-padding: 15; -fx-border-radius: 10;" GridPane.columnIndex="1">
+                                <Label style="-fx-font-size: 22px; -fx-font-family: 'Arial Rounded MT Bold'; -fx-font-weight: bold;" text="Organizar Eventos" />
+                                <Label contentDisplay="CENTER" prefHeight="73.0" prefWidth="169.0" style="-fx-font-size: 16px; -fx-wrap-text: true;" text="Crie e gerencie eventos." textAlignment="RIGHT" />
+                                <Button fx:id="accessSubscriptionsButton" onAction="#handleAccessSubscriptionsButtonClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;" text="Acessar" />
+                            </VBox>
+                            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0" spacing="15.0" style="-fx-border-color: black; -fx-padding: 15; -fx-border-radius: 10;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 22px; -fx-font-family: 'Arial Rounded MT Bold'; -fx-font-weight: bold;" text="Meus Eventos" />
+                                <Label prefHeight="75.0" prefWidth="260.0" style="-fx-font-size: 16px; -fx-wrap-text: true;" text="Veja os eventos em que você está inscrito e acompanhe os detalhes." />
+                                <Button fx:id="accessSubmissionsButton" onAction="#handleAccessSubmissionsButtonClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;" text="Acessar" />
+                            </VBox>
+                            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0" spacing="15.0" style="-fx-border-color: black; -fx-padding: 15; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 22px; -fx-font-family: 'Arial Rounded MT Bold'; -fx-font-weight: bold;" text="Perfil" />
+                                <Label prefHeight="75.0" prefWidth="260.0" style="-fx-font-size: 16px; -fx-wrap-text: true;" text="Acesse e edite as informações do seu perfil." textAlignment="CENTER" />
+                                <Button fx:id="accessProfileButton" onAction="#handleAccessProfileButtonClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;" text="Acessar" />
+                            </VBox>
+                        </children>
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="300.0" prefWidth="300.0" />
+                            <ColumnConstraints minWidth="300.0" prefWidth="300.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="200.0" prefHeight="200.0" />
+                            <RowConstraints minHeight="200.0" prefHeight="200.0" />
+                        </rowConstraints>
+                    </GridPane>
                 </children>
             </AnchorPane>
         </left>
-        <center>
-            <GridPane
-                    alignment="CENTER"
-                    hgap="40"
-                    prefHeight="520.0"
-                    prefWidth="534.0"
-                    style="-fx-padding: 20;"
-                    vgap="40">
-                <children>
-                    <VBox
-                            alignment="CENTER"
-                            prefHeight="121.0"
-                            prefWidth="210.0"
-                            spacing="10.0"
-                            style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;"
-                            GridPane.columnIndex="0"
-                            GridPane.rowIndex="0">
-                        <Label
-                                style="-fx-font-size: 20px; -fx-wrap-text: true;"
-                                text="Eventos"
-                        />
-                        <Label
-                                prefHeight="75.0"
-                                prefWidth="165.0"
-                                style="-fx-font-size: 16px; -fx-wrap-text: true;"
-                                text="Veja a lista de eventos disponíveis"
-                                textAlignment="CENTER"
-                        />
-                        <Button
-                                fx:id="accessEventsButton"
-                                prefHeight="30.0"
-                                prefWidth="193.0"
-                                style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;"
-                                text="Acessar"
-                                onAction="#handleAccessEventsButtonClick"
-                        />
-                    </VBox>
-                    <VBox
-                            alignment="CENTER"
-                            prefHeight="154.0"
-                            prefWidth="193.0"
-                            spacing="10.0"
-                            style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;"
-                            GridPane.columnIndex="1">
-                        <Label
-                                style="-fx-font-size: 20px; -fx-wrap-text: true;"
-                                text="Inscrições"
-                        />
-                        <Label
-                                prefHeight="75.0"
-                                prefWidth="165.0"
-                                style="-fx-font-size: 16px; -fx-wrap-text: true;"
-                                text="Veja as suas inscrições"
-                                textAlignment="CENTER"
-                        />
-                        <Button
-                                fx:id="accessSubscriptionsButton"
-                                prefHeight="30.0"
-                                prefWidth="207.0"
-                                style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;"
-                                text="Acessar"
-                                onAction="#handleAccessSubscriptionsButtonClick"
-                        />
-                    </VBox>
-                    <VBox
-                            alignment="CENTER"
-                            prefHeight="148.0"
-                            prefWidth="208.0"
-                            spacing="10.0"
-                            style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;"
-                            GridPane.columnIndex="0"
-                            GridPane.rowIndex="1">
-                        <Label
-                                style="-fx-font-size: 20px; -fx-wrap-text: true;"
-                                text="Submissões"
-                        />
-                        <Label
-                                prefHeight="81.0"
-                                prefWidth="204.0"
-                                style="-fx-font-size: 16px; -fx-wrap-text: true;"
-                                text="Veja as suas submissões"
-                        />
-                        <Button
-                                fx:id="accessSubmissionsButton"
-                                prefHeight="30.0"
-                                prefWidth="191.0"
-                                style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;"
-                                text="Acessar"
-                                onAction="#handleAccessSubmissionsButtonClick"
-                        />
-                    </VBox>
-                    <VBox
-                            alignment="CENTER"
-                            prefHeight="148.0"
-                            prefWidth="196.0"
-                            spacing="10.0"
-                            style="-fx-border-color: black; -fx-padding: 10; -fx-border-radius: 10;"
-                            GridPane.columnIndex="1"
-                            GridPane.rowIndex="1">
-                        <Label
-                                style="-fx-font-size: 20px; -fx-wrap-text: true;"
-                                text="Perfil"
-                        />
-                        <Label
-                                prefHeight="46.0"
-                                prefWidth="213.0"
-                                style="-fx-font-size: 16px; -fx-wrap-text: true;"
-                                text="Veja o seu perfil."
-                                textAlignment="JUSTIFY"
-                        />
-                        <Button
-                                fx:id="accessProfileButton"
-                                prefHeight="30.0"
-                                prefWidth="216.0"
-                                style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;"
-                                text="Acessar"
-                                onAction="#handleAccessProfileButtonClick"
-                        />
-                    </VBox>
-                </children>
-                <columnConstraints>
-                    <ColumnConstraints minWidth="50.0" prefWidth="200.0" />
-                    <ColumnConstraints minWidth="50.0" prefWidth="200.0" />
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints minHeight="50.0" prefHeight="150.0" />
-                    <RowConstraints minHeight="50.0" prefHeight="150.0" />
-                </rowConstraints>
-            </GridPane>
-        </center>
     </BorderPane>
 </AnchorPane>
